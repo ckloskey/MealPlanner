@@ -205,8 +205,17 @@
     <Compile Include="Migrations\201806201814058_PopulateFoodCategoryTable.Designer.cs">
       <DependentUpon>201806201814058_PopulateFoodCategoryTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806201851101_RenamedFieldInFootItemTable.cs" />
+    <Compile Include="Migrations\201806201851101_RenamedFieldInFootItemTable.Designer.cs">
+      <DependentUpon>201806201851101_RenamedFieldInFootItemTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs" />
+    <Compile Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.Designer.cs">
+      <DependentUpon>201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DietaryRestriction.cs" />
     <Compile Include="Models\FoodCategory.cs" />
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -304,6 +313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806201814058_PopulateFoodCategoryTable.resx">
       <DependentUpon>201806201814058_PopulateFoodCategoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201851101_RenamedFieldInFootItemTable.resx">
+      <DependentUpon>201806201851101_RenamedFieldInFootItemTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.resx">
+      <DependentUpon>201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
