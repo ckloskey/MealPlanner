@@ -153,6 +153,17 @@ namespace MealPlanner.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    var generalUser = new GeneralUser()
+                    {
+                        Id = user.Id,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    };
+                }
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
