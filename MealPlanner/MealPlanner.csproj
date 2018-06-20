@@ -213,6 +213,14 @@
     <Compile Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.Designer.cs">
       <DependentUpon>201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806201922451_SeedingMoreDataInFoodCategories.cs" />
+    <Compile Include="Migrations\201806201922451_SeedingMoreDataInFoodCategories.Designer.cs">
+      <DependentUpon>201806201922451_SeedingMoreDataInFoodCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806202015292_AddedGeneralUserFkToRecipe.cs" />
+    <Compile Include="Migrations\201806202015292_AddedGeneralUserFkToRecipe.Designer.cs">
+      <DependentUpon>201806202015292_AddedGeneralUserFkToRecipe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
@@ -319,6 +327,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.resx">
       <DependentUpon>201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201922451_SeedingMoreDataInFoodCategories.resx">
+      <DependentUpon>201806201922451_SeedingMoreDataInFoodCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806202015292_AddedGeneralUserFkToRecipe.resx">
+      <DependentUpon>201806202015292_AddedGeneralUserFkToRecipe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
