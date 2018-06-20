@@ -197,21 +197,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Ignored\APIKeys.cs" />
-    <Compile Include="Migrations\201806201441052_InitialMigration.cs" />
-    <Compile Include="Migrations\201806201441052_InitialMigration.Designer.cs">
-      <DependentUpon>201806201441052_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201806201807309_InitialSeeding.cs" />
+    <Compile Include="Migrations\201806201807309_InitialSeeding.Designer.cs">
+      <DependentUpon>201806201807309_InitialSeeding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806201442021_SeedingFoodCategoryTable.cs" />
-    <Compile Include="Migrations\201806201442021_SeedingFoodCategoryTable.Designer.cs">
-      <DependentUpon>201806201442021_SeedingFoodCategoryTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806201455578_AddingTables.cs" />
-    <Compile Include="Migrations\201806201455578_AddingTables.Designer.cs">
-      <DependentUpon>201806201455578_AddingTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806201503421_ActuallySeedingFoodCategoriesTableNow.cs" />
-    <Compile Include="Migrations\201806201503421_ActuallySeedingFoodCategoriesTableNow.Designer.cs">
-      <DependentUpon>201806201503421_ActuallySeedingFoodCategoriesTableNow.cs</DependentUpon>
+    <Compile Include="Migrations\201806201814058_PopulateFoodCategoryTable.cs" />
+    <Compile Include="Migrations\201806201814058_PopulateFoodCategoryTable.Designer.cs">
+      <DependentUpon>201806201814058_PopulateFoodCategoryTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -305,17 +297,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806201441052_InitialMigration.resx">
-      <DependentUpon>201806201441052_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806201807309_InitialSeeding.resx">
+      <DependentUpon>201806201807309_InitialSeeding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201442021_SeedingFoodCategoryTable.resx">
-      <DependentUpon>201806201442021_SeedingFoodCategoryTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201455578_AddingTables.resx">
-      <DependentUpon>201806201455578_AddingTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201503421_ActuallySeedingFoodCategoriesTableNow.resx">
-      <DependentUpon>201806201503421_ActuallySeedingFoodCategoriesTableNow.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806201814058_PopulateFoodCategoryTable.resx">
+      <DependentUpon>201806201814058_PopulateFoodCategoryTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

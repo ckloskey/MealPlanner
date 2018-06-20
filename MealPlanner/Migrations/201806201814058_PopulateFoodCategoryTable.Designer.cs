@@ -7,13 +7,13 @@ namespace MealPlanner.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ActuallySeedingFoodCategoriesTableNow : IMigrationMetadata
+    public sealed partial class PopulateFoodCategoryTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ActuallySeedingFoodCategoriesTableNow));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateFoodCategoryTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806201503421_ActuallySeedingFoodCategoriesTableNow"; }
+            get { return "201806201814058_PopulateFoodCategoryTable"; }
         }
         
         string IMigrationMetadata.Source

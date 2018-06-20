@@ -8,8 +8,8 @@ namespace MealPlanner.Models
     public class ShoppingItem
     {
         public int Id { get; set; }
-        public FoodCategory Food { get; set; }
         public string FoodName { get; set; }
+        public FoodCategory Food { get; set; }
         public int Quantity { get; set; }
     }
 }
