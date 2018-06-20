@@ -20,6 +20,12 @@ namespace MealPlanner.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<FoodCategory> FoodCategory { get; set; }
+        public DbSet<FoodItem> FoodItem { get; set; }
+        public DbSet<GeneralUser> GeneralUser { get; set; }
+        public DbSet<Recipe> Recipe { get; set; }
+        public DbSet<ShoppingItem> ShoppingItem { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
