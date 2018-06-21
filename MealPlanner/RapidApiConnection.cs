@@ -8,37 +8,36 @@ using RapidAPISDK;
 
 namespace MealPlanner
 {
-    public class RapidApiConnection
-    {
-        //API steps:
-        //Get Random recipes to obtain Id(or Get Similar Recipes)
-        //Use Id and Get Analyzed Recipe Instructions
+	public class RapidApiConnection
+	{
+		//API steps:
+		//Get Random recipes to obtain Id(or Get Similar Recipes)
+		//Use Id and Get Analyzed Recipe Instructions
+		private static RapidAPI RapidApi;
 
         public static void ConnectionString()
         {
-            RapidAPI RapidApi = new RapidAPI(APIKeys.projectName, APIKeys.rapidKey);
-        }
+            RapidApi = new RapidAPI(APIKeys.projectName, APIKeys.rapidKey);
+		}
 
-        public void GetRandomRecipes()
-        {
-            //Task<HttpResponse<MyClass>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=1")
-            //.header("X-Mashape-Key", APIKeys.mashapeKey)
-            //.header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
-            //.asJson();
-        }
-
-        private static RapidAPI RapidApi = new RapidAPI(APIKeys.projectName, key: APIKeys.rapidKey);
         //To call an API:
         public static void CallApi()
         {
+            if (RapidApi == null)
+            {
+                ConnectionString();
+            }
             List<Parameter> body = new List<Parameter>();
 
-            body.Add(new DataParameter("ParameterKey1", "ParameterValue1"));
-            body.Add(new DataParameter("ParameterKey2", "ParameterValue2"));
+            body.Add(new DataParameter("ingredients", "chicken, tomatoe"));
+            body.Add(new DataParameter("number", "1"));
+            body.Add(new DataParameter("ranking", "2"));
             try
             {
-                Dictionary<string, object> response = RapidApi.Call("APIName", "FunctionName").Result;
+                //https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients
+                Dictionary<string, object> response = RapidApi.Call("spoonacular-recipe-food-nutrition", "findByIngredients", body.ToArray()).Result;
                 object payload;
+
                 if (response.TryGetValue("success", out payload))
                 {
 
@@ -50,12 +49,13 @@ namespace MealPlanner
             }
             catch (RapidAPIServerException e)
             {
-
+                Console.WriteLine(e.Data);
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.Data);
             }
         }
+
     }
 }
