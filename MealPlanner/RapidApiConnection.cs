@@ -1,9 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using MealPlanner.Ignored;
 using RapidAPISDK;
+using unirest_net.http;
+using Newtonsoft.Json;
+using System.Runtime.Serialization.Json;
+using MealPlanner.Models;
+using System.Net.Http;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Text;
 
 
 namespace MealPlanner
@@ -13,48 +22,18 @@ namespace MealPlanner
 		//API steps:
 		//Get Random recipes to obtain Id(or Get Similar Recipes)
 		//Use Id and Get Analyzed Recipe Instructions
-		private static RapidAPI RapidApi;
 
-        public static void ConnectionString()
+        public static object SearchByIngredients()
         {
-            RapidApi = new RapidAPI(APIKeys.projectName, APIKeys.rapidKey);
-		}
+             Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=chicken%2C+pepper&number=&ranking=1")
+            .header("X-Mashape-Key", APIKeys.mashapeKey)
+            .header("Accept", "application/json")
+            .asStringAsync();
 
-        //To call an API:
-        public static void CallApi()
-        {
-            if (RapidApi == null)
-            {
-                ConnectionString();
-            }
-            List<Parameter> body = new List<Parameter>();
+            string result = response.Result.Body;
 
-            body.Add(new DataParameter("ingredients", "chicken, tomatoe"));
-            body.Add(new DataParameter("number", "1"));
-            body.Add(new DataParameter("ranking", "2"));
-            try
-            {
-                //https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients
-                Dictionary<string, object> response = RapidApi.Call("spoonacular-recipe-food-nutrition", "findByIngredients", body.ToArray()).Result;
-                object payload;
-
-                if (response.TryGetValue("success", out payload))
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-            catch (RapidAPIServerException e)
-            {
-                Console.WriteLine(e.Data);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Data);
-            }
+            RootObject[] rootObject = JsonConvert.DeserializeObject<RootObject[]>(result);
+            return rootObject[0];
         }
 
     }

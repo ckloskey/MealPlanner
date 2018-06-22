@@ -9,7 +9,7 @@ namespace MealPlanner
         public void Configuration(IAppBuilder app)
         {
             //ConfigureAuth(app);
-            RapidApiConnection.CallApi();
+            RapidApiConnection.SearchByIngredients();
         }
     }
 }
