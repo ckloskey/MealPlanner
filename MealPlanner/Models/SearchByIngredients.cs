@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MealPlanner.Models
 {
-    public class RootObject
+    public class SearchByIngredients
     {
         public int id { get; set; }
         public string title { get; set; }

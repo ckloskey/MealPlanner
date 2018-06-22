@@ -252,12 +252,14 @@
     <Compile Include="Models\DietaryRestriction.cs" />
     <Compile Include="Models\FoodCategory.cs" />
     <Compile Include="Models\FoodItem.cs" />
+    <Compile Include="Models\GetAnalyzedInstructions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Recipe.cs" />
-    <Compile Include="Models\RootObject.cs" />
+    <Compile Include="Models\SearchByIngredients.cs" />
     <Compile Include="Models\ShoppingItem.cs" />
     <Compile Include="Models\GeneralUser.cs" />
+    <Compile Include="Models\GetAnalyzedInstructionsStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RapidApiConnection.cs" />
     <Compile Include="Startup.cs" />
