@@ -1,27 +1,30 @@
-﻿@model IEnumerable<MealPlanner.Models.GeneralUser>
+﻿@using Microsoft.AspNet.Identity;
+@model MealPlanner.Models.GeneralUser
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    @User.Identity.GetUserId();
+    <h2>General User Page</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+    @foreach (var item in Model.Recipes)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+
+    </table>
 }
 
-</table>

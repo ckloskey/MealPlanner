@@ -8,8 +8,8 @@ namespace MealPlanner
     {
         public void Configuration(IAppBuilder app)
         {
-            //ConfigureAuth(app);
-            RapidApiConnection.SearchByIngredients();
+            ConfigureAuth(app);
+            //RapidApiConnection.SearchByIngredients();
         }
     }
 }

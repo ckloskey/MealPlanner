@@ -223,6 +223,14 @@
     <Compile Include="Migrations\201806251341477_RedoingDatabase.Designer.cs">
       <DependentUpon>201806251341477_RedoingDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806252026217_RefreshMigrations.cs" />
+    <Compile Include="Migrations\201806252026217_RefreshMigrations.Designer.cs">
+      <DependentUpon>201806252026217_RefreshMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806252031351_RemoveFkeysFromUserTable.cs" />
+    <Compile Include="Migrations\201806252031351_RemoveFkeysFromUserTable.Designer.cs">
+      <DependentUpon>201806252031351_RemoveFkeysFromUserTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
@@ -324,6 +332,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806251341477_RedoingDatabase.resx">
       <DependentUpon>201806251341477_RedoingDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806252026217_RefreshMigrations.resx">
+      <DependentUpon>201806252026217_RefreshMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806252031351_RemoveFkeysFromUserTable.resx">
+      <DependentUpon>201806252031351_RemoveFkeysFromUserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

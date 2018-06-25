@@ -10,107 +10,107 @@ using MealPlanner.Models;
 
 namespace MealPlanner.Controllers
 {
-    public class GeneralUsersController : Controller
+    public class DietaryRestrictionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: GeneralUsers
+        // GET: DietaryRestrictions
         public ActionResult Index()
         {
-            return View();
+            return View(db.DietaryRestriction.ToList());
         }
 
-        // GET: GeneralUsers/Details/5
+        // GET: DietaryRestrictions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            if (generalUser == null)
+            DietaryRestriction dietaryRestriction = db.DietaryRestriction.Find(id);
+            if (dietaryRestriction == null)
             {
                 return HttpNotFound();
             }
-            return View(generalUser);
+            return View(dietaryRestriction);
         }
 
-        // GET: GeneralUsers/Create
+        // GET: DietaryRestrictions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: GeneralUsers/Create
+        // POST: DietaryRestrictions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id")] GeneralUser generalUser)
+        public ActionResult Create([Bind(Include = "Id,Restriction")] DietaryRestriction dietaryRestriction)
         {
             if (ModelState.IsValid)
             {
-                db.GeneralUser.Add(generalUser);
+                db.DietaryRestriction.Add(dietaryRestriction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(generalUser);
+            return View(dietaryRestriction);
         }
 
-        // GET: GeneralUsers/Edit/5
+        // GET: DietaryRestrictions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            if (generalUser == null)
+            DietaryRestriction dietaryRestriction = db.DietaryRestriction.Find(id);
+            if (dietaryRestriction == null)
             {
                 return HttpNotFound();
             }
-            return View(generalUser);
+            return View(dietaryRestriction);
         }
 
-        // POST: GeneralUsers/Edit/5
+        // POST: DietaryRestrictions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id")] GeneralUser generalUser)
+        public ActionResult Edit([Bind(Include = "Id,Restriction")] DietaryRestriction dietaryRestriction)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(generalUser).State = EntityState.Modified;
+                db.Entry(dietaryRestriction).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(generalUser);
+            return View(dietaryRestriction);
         }
 
-        // GET: GeneralUsers/Delete/5
+        // GET: DietaryRestrictions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            if (generalUser == null)
+            DietaryRestriction dietaryRestriction = db.DietaryRestriction.Find(id);
+            if (dietaryRestriction == null)
             {
                 return HttpNotFound();
             }
-            return View(generalUser);
+            return View(dietaryRestriction);
         }
 
-        // POST: GeneralUsers/Delete/5
+        // POST: DietaryRestrictions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            db.GeneralUser.Remove(generalUser);
+            DietaryRestriction dietaryRestriction = db.DietaryRestriction.Find(id);
+            db.DietaryRestriction.Remove(dietaryRestriction);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

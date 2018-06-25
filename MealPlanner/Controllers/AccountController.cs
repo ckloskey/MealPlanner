@@ -17,9 +17,11 @@ namespace MealPlanner.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -79,7 +81,7 @@ namespace MealPlanner.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "GeneralUsers");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -162,6 +164,9 @@ namespace MealPlanner.Controllers
                         FirstName = model.FirstName,
                         LastName = model.LastName
                     };
+                    _context.GeneralUser.Add(generalUser);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", "GeneralUsers");
                 }
 
                 if (result.Succeeded)
