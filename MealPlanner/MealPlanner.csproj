@@ -219,33 +219,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Ignored\APIKeys.cs" />
-    <Compile Include="Migrations\201806201807309_InitialSeeding.cs" />
-    <Compile Include="Migrations\201806201807309_InitialSeeding.Designer.cs">
-      <DependentUpon>201806201807309_InitialSeeding.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806201814058_PopulateFoodCategoryTable.cs" />
-    <Compile Include="Migrations\201806201814058_PopulateFoodCategoryTable.Designer.cs">
-      <DependentUpon>201806201814058_PopulateFoodCategoryTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806201851101_RenamedFieldInFootItemTable.cs" />
-    <Compile Include="Migrations\201806201851101_RenamedFieldInFootItemTable.Designer.cs">
-      <DependentUpon>201806201851101_RenamedFieldInFootItemTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs" />
-    <Compile Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.Designer.cs">
-      <DependentUpon>201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806201922451_SeedingMoreDataInFoodCategories.cs" />
-    <Compile Include="Migrations\201806201922451_SeedingMoreDataInFoodCategories.Designer.cs">
-      <DependentUpon>201806201922451_SeedingMoreDataInFoodCategories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806202015292_AddedGeneralUserFkToRecipe.cs" />
-    <Compile Include="Migrations\201806202015292_AddedGeneralUserFkToRecipe.Designer.cs">
-      <DependentUpon>201806202015292_AddedGeneralUserFkToRecipe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806202124376_changingGenUserAgain.cs" />
-    <Compile Include="Migrations\201806202124376_changingGenUserAgain.Designer.cs">
-      <DependentUpon>201806202124376_changingGenUserAgain.cs</DependentUpon>
+    <Compile Include="Migrations\201806251341477_RedoingDatabase.cs" />
+    <Compile Include="Migrations\201806251341477_RedoingDatabase.Designer.cs">
+      <DependentUpon>201806251341477_RedoingDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -346,26 +322,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806201807309_InitialSeeding.resx">
-      <DependentUpon>201806201807309_InitialSeeding.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201814058_PopulateFoodCategoryTable.resx">
-      <DependentUpon>201806201814058_PopulateFoodCategoryTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201851101_RenamedFieldInFootItemTable.resx">
-      <DependentUpon>201806201851101_RenamedFieldInFootItemTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.resx">
-      <DependentUpon>201806201916123_AddedDietaryRestrictionTableAndFKinUserTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201922451_SeedingMoreDataInFoodCategories.resx">
-      <DependentUpon>201806201922451_SeedingMoreDataInFoodCategories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806202015292_AddedGeneralUserFkToRecipe.resx">
-      <DependentUpon>201806202015292_AddedGeneralUserFkToRecipe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806202124376_changingGenUserAgain.resx">
-      <DependentUpon>201806202124376_changingGenUserAgain.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806251341477_RedoingDatabase.resx">
+      <DependentUpon>201806251341477_RedoingDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
