@@ -39,7 +39,6 @@ namespace MealPlanner.Controllers
         {
             FoodItem foodItem = new FoodItem();
             foodItem.FoodCategories = db.FoodCategory.ToList();
-
             return View(foodItem);
         }
 

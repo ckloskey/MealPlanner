@@ -61,8 +61,10 @@ namespace MealPlanner
                 title = root.title,
                 image = root.image
             };
+
             _context.Recipe.Add(newRecipe);
             _context.SaveChanges();
+            GetAnalyzedReceipeInstructions(newRecipe);
             return newRecipe;
         }
 
@@ -84,9 +86,17 @@ namespace MealPlanner
             {
                 name = recipe.title,
                 steps = root.steps
-            };
-            _context.SaveChanges();
 
+            };
+            foreach (var step in root.steps)
+            {
+                recipe.RecipeSteps.Add(step.ToString());
+            }
+            foreach (var ingredient in instructions.steps)
+            {
+                recipe.Ingredients.Add(ingredient.ToString());
+            }
+            _context.SaveChanges();
         }
 
         public Recipe GetRandomRecipe()
@@ -111,6 +121,7 @@ namespace MealPlanner
 
             _context.Recipe.Add(newRecipe);
             _context.SaveChanges();
+            GetAnalyzedReceipeInstructions(newRecipe);
             return newRecipe;
         }
         
