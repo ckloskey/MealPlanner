@@ -212,6 +212,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FoodItemsController.cs" />
     <Compile Include="Controllers\GeneralUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -230,6 +231,22 @@
     <Compile Include="Migrations\201806252031351_RemoveFkeysFromUserTable.cs" />
     <Compile Include="Migrations\201806252031351_RemoveFkeysFromUserTable.Designer.cs">
       <DependentUpon>201806252031351_RemoveFkeysFromUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806252333326_SeedingFoodCategories.cs" />
+    <Compile Include="Migrations\201806252333326_SeedingFoodCategories.Designer.cs">
+      <DependentUpon>201806252333326_SeedingFoodCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806260002140_RefreshMigration.cs" />
+    <Compile Include="Migrations\201806260002140_RefreshMigration.Designer.cs">
+      <DependentUpon>201806260002140_RefreshMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806260013183_RefreshMigration1.cs" />
+    <Compile Include="Migrations\201806260013183_RefreshMigration1.Designer.cs">
+      <DependentUpon>201806260013183_RefreshMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261221007_CombiningSearchTablePropertiesInRecipeTable.cs" />
+    <Compile Include="Migrations\201806261221007_CombiningSearchTablePropertiesInRecipeTable.Designer.cs">
+      <DependentUpon>201806261221007_CombiningSearchTablePropertiesInRecipeTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -312,6 +329,11 @@
     <Content Include="Views\GeneralUsers\Details.cshtml" />
     <Content Include="Views\GeneralUsers\Edit.cshtml" />
     <Content Include="Views\GeneralUsers\Index.cshtml" />
+    <Content Include="Views\FoodItems\Create.cshtml" />
+    <Content Include="Views\FoodItems\Delete.cshtml" />
+    <Content Include="Views\FoodItems\Details.cshtml" />
+    <Content Include="Views\FoodItems\Edit.cshtml" />
+    <Content Include="Views\FoodItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -338,6 +360,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806252031351_RemoveFkeysFromUserTable.resx">
       <DependentUpon>201806252031351_RemoveFkeysFromUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806252333326_SeedingFoodCategories.resx">
+      <DependentUpon>201806252333326_SeedingFoodCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806260002140_RefreshMigration.resx">
+      <DependentUpon>201806260002140_RefreshMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806260013183_RefreshMigration1.resx">
+      <DependentUpon>201806260013183_RefreshMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261221007_CombiningSearchTablePropertiesInRecipeTable.resx">
+      <DependentUpon>201806261221007_CombiningSearchTablePropertiesInRecipeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

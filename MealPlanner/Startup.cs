@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using MealPlanner.Models;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(MealPlanner.Startup))]
@@ -9,7 +10,6 @@ namespace MealPlanner
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //RapidApiConnection.SearchByIngredients();
         }
     }
 }

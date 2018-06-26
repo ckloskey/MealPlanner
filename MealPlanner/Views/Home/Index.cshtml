@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MealPlanner.Models.Recipe
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -19,3 +21,16 @@
         <h2>Web Hosting</h2>
     </div>
 </div>
+<div>
+    Recipies
+</div>
+<div>
+    @Html.LabelFor(model => model.title)
+    @Html.DisplayFor(model => model.title)
+</div>
+<div>
+    <img src="@Html.DisplayFor(model => model.image)" />
+</div>
+
+    
+

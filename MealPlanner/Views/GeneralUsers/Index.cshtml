@@ -7,14 +7,13 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    @User.Identity.GetUserId();
     <h2>General User Page</h2>
 
     <table class="table">
         <tr>
             <th></th>
         </tr>
-    @foreach (var item in Model.Recipes)
+    @*@foreach (var item in Model.Recipes)
     {
         <tr>
             <td>
@@ -22,7 +21,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
-    }
+    }*@
 
 
     </table>

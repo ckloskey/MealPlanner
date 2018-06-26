@@ -12,8 +12,9 @@ namespace MealPlanner.Models
         public string Name { get; set; }
         public DateTime DatePurchased { get; set; }
         public int ExpirationInDays { get; set; }
-        public FoodCategory Category { get; set; }
-        public int FoodCategory { get; set; }
-        
+
+        public int FoodCategoryId { get; set; }
+        public List<FoodCategory> FoodCategories { get; set; }
+
     }
 }

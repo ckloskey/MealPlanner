@@ -6,118 +6,113 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using MealPlanner.Models;
 
 namespace MealPlanner.Controllers
 {
-    public class GeneralUsersController : Controller
+    public class FoodItemsController : Controller
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
-        public GeneralUsersController()
-        {
-            db = new ApplicationDbContext();
-        }
-        // GET: GeneralUsers
+        // GET: FoodItems
         public ActionResult Index()
         {
-            RapidApiConnection api = new RapidApiConnection();
-           var recipies =  api.SearchByIngredients();
-            return View();
+            return View(db.FoodItem.ToList());
         }
-
-        // GET: GeneralUsers/Details/5
+        // GET: FoodItems/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            if (generalUser == null)
+            FoodItem foodItem = db.FoodItem.Find(id);
+            if (foodItem == null)
             {
                 return HttpNotFound();
             }
-            return View(generalUser);
+            return View(foodItem);
         }
 
-        // GET: GeneralUsers/Create
+        // GET: FoodItems/Create
         public ActionResult Create()
         {
-            return View();
+            FoodItem foodItem = new FoodItem();
+            foodItem.FoodCategories = db.FoodCategory.ToList();
+
+            return View(foodItem);
         }
 
-        // POST: GeneralUsers/Create
+        // POST: FoodItems/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id")] GeneralUser generalUser)
+        public ActionResult Create([Bind(Include = "Id,Name,DatePurchased,ExpirationInDays,FoodCategory")] FoodItem foodItem)
         {
             if (ModelState.IsValid)
             {
-                db.GeneralUser.Add(generalUser);
+                db.FoodItem.Add(foodItem);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(generalUser);
+            return View(foodItem);
         }
 
-        // GET: GeneralUsers/Edit/5
+        // GET: FoodItems/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            if (generalUser == null)
+            FoodItem foodItem = db.FoodItem.Find(id);
+            if (foodItem == null)
             {
                 return HttpNotFound();
             }
-            return View(generalUser);
+            return View(foodItem);
         }
 
-        // POST: GeneralUsers/Edit/5
+        // POST: FoodItems/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id")] GeneralUser generalUser)
+        public ActionResult Edit([Bind(Include = "Id,Name,DatePurchased,ExpirationInDays,FoodCategory")] FoodItem foodItem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(generalUser).State = EntityState.Modified;
+                db.Entry(foodItem).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(generalUser);
+            return View(foodItem);
         }
 
-        // GET: GeneralUsers/Delete/5
+        // GET: FoodItems/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            if (generalUser == null)
+            FoodItem foodItem = db.FoodItem.Find(id);
+            if (foodItem == null)
             {
                 return HttpNotFound();
             }
-            return View(generalUser);
+            return View(foodItem);
         }
 
-        // POST: GeneralUsers/Delete/5
+        // POST: FoodItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GeneralUser generalUser = db.GeneralUser.Find(id);
-            db.GeneralUser.Remove(generalUser);
+            FoodItem foodItem = db.FoodItem.Find(id);
+            db.FoodItem.Remove(foodItem);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

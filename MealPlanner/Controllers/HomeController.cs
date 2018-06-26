@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MealPlanner.Models;
 
 namespace MealPlanner.Controllers
 {
@@ -10,9 +11,12 @@ namespace MealPlanner.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            RapidApiConnection api = new RapidApiConnection();
+            Recipe recipies = api.SearchByIngredients();
+            api.GetAnalyzedReceipeInstructions(recipies);
+            return View(recipies);
         }
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

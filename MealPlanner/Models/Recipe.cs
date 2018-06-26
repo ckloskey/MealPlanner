@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,7 +20,9 @@ namespace MealPlanner.Models
         //follow random recipe method
 
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int apiId { get; set; }
+        public string title { get; set; }
+        public string image { get; set; }
         public List<string> Ingredients { get; set; }
         public List<string> RecipeSteps { get; set; }
     }
