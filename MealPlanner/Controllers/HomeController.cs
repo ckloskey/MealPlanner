@@ -9,11 +9,14 @@ namespace MealPlanner.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext _context;
+        public HomeController()
+        {
+            _context = new ApplicationDbContext();
+        }
         public ActionResult Index()
         {
-            RapidApiConnection api = new RapidApiConnection();
-            Recipe recipies = api.SearchByIngredients();
-            api.GetAnalyzedReceipeInstructions(recipies);
+            var recipies = _context.Recipe.ToList();
             return View(recipies);
         }
         

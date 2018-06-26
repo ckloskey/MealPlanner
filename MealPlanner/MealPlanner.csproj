@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201806261221007_CombiningSearchTablePropertiesInRecipeTable.Designer.cs">
       <DependentUpon>201806261221007_CombiningSearchTablePropertiesInRecipeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.cs" />
+    <Compile Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.Designer.cs">
+      <DependentUpon>201806261536315_AddingMigrationJustToDeleteDbTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
@@ -256,6 +260,9 @@
     <Compile Include="Models\GetAnalyzedInstructions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RandomRecipeObject.cs" />
+    <Compile Include="Models\RandomRecipeRootExtendedIngredients.cs" />
+    <Compile Include="Models\RandomRecipeRootProperties.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\SearchByIngredients.cs" />
     <Compile Include="Models\ShoppingItem.cs" />
@@ -372,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806261221007_CombiningSearchTablePropertiesInRecipeTable.resx">
       <DependentUpon>201806261221007_CombiningSearchTablePropertiesInRecipeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.resx">
+      <DependentUpon>201806261536315_AddingMigrationJustToDeleteDbTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

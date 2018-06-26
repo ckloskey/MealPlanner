@@ -1,36 +1,29 @@
-﻿@model MealPlanner.Models.Recipe
+﻿@model IEnumerable<MealPlanner.Models.Recipe>
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">Some Picture goes here</p>
-    <p>Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-    </div>
-</div>
 <div>
     Recipies
 </div>
-<div>
-    @Html.LabelFor(model => model.title)
-    @Html.DisplayFor(model => model.title)
-</div>
-<div>
-    <img src="@Html.DisplayFor(model => model.image)" />
-</div>
+<table class="table">
+@foreach (var item in Model)
+        {
 
-    
+            <tr>
+                <td>
+                    @Html.LabelFor(modelItem => item.title)
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.image)">
+                </td>
+            </tr>
+    }
+</table>
+
+
+
+
 
