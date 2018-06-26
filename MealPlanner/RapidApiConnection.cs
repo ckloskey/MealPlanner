@@ -88,13 +88,13 @@ namespace MealPlanner
                 steps = root.steps
 
             };
-            foreach (var step in instructions.steps)
+            foreach (var step in root.steps)
             {
                 recipe.RecipeSteps.Add(step);
-            }
-            foreach (var ingredient in instructions.steps)
-            {
-                recipe.Ingredients.Add(ingredient.ToString());
+                if (step.ingredients != null)
+                {
+                    recipe.Ingredients.Add(step.ingredients.ToString());
+                }
             }
             _context.SaveChanges();
         }
