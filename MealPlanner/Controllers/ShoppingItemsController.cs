@@ -17,10 +17,6 @@ namespace MealPlanner.Controllers
         // GET: ShoppingItems
         public ActionResult Index()
         {
-            var shoppingItems = (
-                
-
-                ).ToList();
             return View(db.ShoppingItem.ToList());
         }
 
