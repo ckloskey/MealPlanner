@@ -11,15 +11,20 @@
 @foreach (var item in Model)
         {
 
-            <tr>
-                <td>
-                    @Html.LabelFor(modelItem => item.title)
-                    @Html.DisplayFor(modelItem => item.title)
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.image)">
-                </td>
-            </tr>
+    <tr>
+        <td>
+            <div class="col-lg-6">
+                @Html.LabelFor(modelItem => item.title)
+                @Html.DisplayFor(modelItem => item.title)
+            </div>
+        </td>
+
+        <td>
+            <div class="col-lg-6">
+                <img src="@Html.DisplayFor(modelItem => item.image)">
+            </div>
+        </td>
+    </tr>
     }
 </table>
 

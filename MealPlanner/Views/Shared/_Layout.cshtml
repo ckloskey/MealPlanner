@@ -23,11 +23,12 @@
             <div class="navbar-collapse collapse">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("In The Fridge", "Index", "FoodItems")</li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("In The Fridge", "Index", "FoodItems")</li>
+                    <li>@Html.ActionLink("Shopping List", "Index", "ShoppingItems")</li>
+                </ul>
                  }
 
                 @Html.Partial("_LoginPartial")

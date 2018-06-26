@@ -216,6 +216,7 @@
     <Compile Include="Controllers\GeneralUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ShoppingItemsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,6 +252,10 @@
     <Compile Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.cs" />
     <Compile Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.Designer.cs">
       <DependentUpon>201806261536315_AddingMigrationJustToDeleteDbTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806261713138_RefreshMigrations1.cs" />
+    <Compile Include="Migrations\201806261713138_RefreshMigrations1.Designer.cs">
+      <DependentUpon>201806261713138_RefreshMigrations1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -341,6 +346,11 @@
     <Content Include="Views\FoodItems\Details.cshtml" />
     <Content Include="Views\FoodItems\Edit.cshtml" />
     <Content Include="Views\FoodItems\Index.cshtml" />
+    <Content Include="Views\ShoppingItems\Create.cshtml" />
+    <Content Include="Views\ShoppingItems\Delete.cshtml" />
+    <Content Include="Views\ShoppingItems\Details.cshtml" />
+    <Content Include="Views\ShoppingItems\Edit.cshtml" />
+    <Content Include="Views\ShoppingItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -382,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.resx">
       <DependentUpon>201806261536315_AddingMigrationJustToDeleteDbTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261713138_RefreshMigrations1.resx">
+      <DependentUpon>201806261713138_RefreshMigrations1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

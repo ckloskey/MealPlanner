@@ -88,9 +88,9 @@ namespace MealPlanner
                 steps = root.steps
 
             };
-            foreach (var step in root.steps)
+            foreach (var step in instructions.steps)
             {
-                recipe.RecipeSteps.Add(step.ToString());
+                recipe.RecipeSteps.Add(step);
             }
             foreach (var ingredient in instructions.steps)
             {
