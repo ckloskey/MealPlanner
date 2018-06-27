@@ -8,23 +8,63 @@
     Recipies
 </div>
 <table class="table">
-@foreach (var item in Model)
+    @{int i = 0; }
+    @foreach (var item in Model)
+    {
+
+
+        DayOfWeek weekday = DateTime.Now.DayOfWeek;
+        int day = ((i + 7) % 7);
+        switch (day)
         {
+            case 0:
+                weekday = DateTime.Now.DayOfWeek;
+                break;
+            case 1:
+                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
+                break;
+            case 2:
+                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
+                break;
+            case 3:
+                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
+                break;
+            case 4:
+                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
+                break;
+            case 5:
+                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
+                break;
+            case 6:
+                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
+                break;
 
-    <tr>
-        <td>
-            <div class="col-lg-6">
-                @Html.LabelFor(modelItem => item.title)
-                @Html.DisplayFor(modelItem => item.title)
-            </div>
-        </td>
+        }
+        i++;
 
-        <td>
-            <div class="col-lg-6">
-                <img src="@Html.DisplayFor(modelItem => item.image)">
-            </div>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @weekday
+            </td>
+            <td>
+                <div class="col-lg-5">
+                    @Html.LabelFor(modelItem => item.title)
+                    @Html.DisplayFor(modelItem => item.title)
+                </div>
+            </td>
+
+            <td>
+                <div class="col-lg-3">
+                    <img src="@Html.DisplayFor(modelItem => item.image)">
+                </div>
+            </td>
+            <td>
+                <div class="col-lg-2">
+                    @Html.ActionLink("New", "Index")
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </div>
+            </td>
+        </tr>
     }
 </table>
 
