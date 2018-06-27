@@ -62,7 +62,7 @@ namespace MealPlanner.Controllers
 
                 _context.SaveChanges();
                 
-            return RedirectToAction("Index");
+            return View("Index");
         }
 
         public ActionResult NewSimilarRecipe([Bind(Include = "Id,apiId,title,image")] Recipe recipe)
@@ -77,7 +77,15 @@ namespace MealPlanner.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return View("Index");
+        }
+
+        public ActionResult Saved(Recipe recipe)
+        {
+            Recipe savingRecipe = _context.Recipe.Find(recipe.Id);
+            savingRecipe.Saved = true;
+            _context.SaveChanges();
+            return View("Index");
         }
 
     }

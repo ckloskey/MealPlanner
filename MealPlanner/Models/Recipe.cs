@@ -25,5 +25,6 @@ namespace MealPlanner.Models
         public string image { get; set; }
         public List<string> Ingredients { get; set; }
         public List<GetAnalyzedInstructionsStep> RecipeSteps { get; set; }
+        public bool Saved { get; set; }
     }
 }

@@ -39,6 +39,7 @@
             <td>
                 <div class="col-md-3">
                     @Html.ActionLink("View Recipe", "ViewRecipe", new { id = item.Id })
+                    @Html.ActionLink("Save", "Index", new { id = item.Id })
                     @Html.ActionLink("Replace With Similar", "NewSimilarRecipe", new { id = item.Id })
                     @Html.ActionLink("Replace With Random", "NewRandomRecipe", new { id = item.Id })
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })

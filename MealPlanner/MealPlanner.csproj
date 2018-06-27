@@ -257,6 +257,14 @@
     <Compile Include="Migrations\201806261713138_RefreshMigrations1.Designer.cs">
       <DependentUpon>201806261713138_RefreshMigrations1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806271546343_AddedSavedFieldToRecipes.cs" />
+    <Compile Include="Migrations\201806271546343_AddedSavedFieldToRecipes.Designer.cs">
+      <DependentUpon>201806271546343_AddedSavedFieldToRecipes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271600471_SeedingMoreFoodCategories.cs" />
+    <Compile Include="Migrations\201806271600471_SeedingMoreFoodCategories.Designer.cs">
+      <DependentUpon>201806271600471_SeedingMoreFoodCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
@@ -396,6 +404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806261713138_RefreshMigrations1.resx">
       <DependentUpon>201806261713138_RefreshMigrations1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271546343_AddedSavedFieldToRecipes.resx">
+      <DependentUpon>201806271546343_AddedSavedFieldToRecipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271600471_SeedingMoreFoodCategories.resx">
+      <DependentUpon>201806271600471_SeedingMoreFoodCategories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
