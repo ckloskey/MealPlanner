@@ -25,9 +25,7 @@ namespace MealPlanner
         {
             _context = new ApplicationDbContext();
         }
-		//API steps:
-		//Get Random recipes to obtain Id(or Get Similar Recipes)
-		//Use Id and Get Analyzed Recipe Instructions
+
         public static Task<HttpResponse<string>> GetApiRequest(string urlStringRoute)
         {
             string wholeUrlPath = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + urlStringRoute;
@@ -48,9 +46,6 @@ namespace MealPlanner
             //ranking == "1" <-- maximizes ingredients
             var response = GetApiRequest(urlString);
            // Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientsList + "&number=1&ranking=2")
-           //.header("X-Mashape-Key", APIKeys.mashapeKey)
-           //.header("Accept", "application/json")
-           //.asStringAsync();
             string result = response.Result.Body;
 
             SearchByIngredients[] rootObject = JsonConvert.DeserializeObject<SearchByIngredients[]>(result);
@@ -73,11 +68,6 @@ namespace MealPlanner
             //string urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe.apiId + "/analyzedInstructions?stepBreakdown=true";
             string urlString = recipe.apiId.ToString() + "/analyzedInstructions?stepBreakdown=true";
             var response = GetApiRequest(urlString);
-           // Task<HttpResponse<string>> response = Unirest.get(urlString)
-           //.header("X-Mashape-Key", APIKeys.mashapeKey)
-           //.header("Accept", "application/json")
-           //.asStringAsync();
-
             string result = response.Result.Body;
 
             GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(result);
@@ -99,46 +89,38 @@ namespace MealPlanner
             _context.SaveChanges();
         }
 
-        public Recipe GetRandomRecipe()
+        public void GetRandomRecipeMethods()
+        {
+            GetAnalyzedReceipeInstructions(UpdateNewRecipe(GetRandomRecipe()));
+        }
+        public RandomRecipeObject GetRandomRecipe()
         {
             string urlString = "random?limitLicense=false&number=1";
             var response = GetApiRequest(urlString);
             //Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=1")
-            //.header("X-Mashape-Key", APIKeys.mashapeKey)
-            //.header("Accept", "application/json")
-            //.asStringAsync();
-
             string result = response.Result.Body;
 
             RandomRecipeObject rootObject = JsonConvert.DeserializeObject<RandomRecipeObject>(result);
-            
-            Recipe newRecipe = new Recipe
-            {
-                apiId = rootObject.recipes[0].id,
-                title = rootObject.recipes[0].title,
-                image = rootObject.recipes[0].image
-            };
-
-            _context.Recipe.Add(newRecipe);
-            _context.SaveChanges();
-            GetAnalyzedReceipeInstructions(newRecipe);
-            return newRecipe;
+            return rootObject;
         }
         
         //may have to use for filtering out allergies. Counts as 3 api calls
         //"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=false&excludeIngredients=coconut%2C+mango&fillIngredients=false&includeIngredients=onions%2C+lettuce%2C+tomato&instructionsRequired=false&intolerances=nuts&limitLicense=false&number=1&offset=<required>&ranking=2&type=main+course"
 
-        public Recipe GetSimilarRecipe(Recipe recipe)
+        public RandomRecipeObject GetSimilarRecipe(Recipe recipe)
         {
             string urlString = recipe.apiId.ToString() + "/similar";
             var response = GetApiRequest(urlString);
             //Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/156992/similar")
-            //.header("X-Mashape-Key", APIKeys.mashapeKey)
-            //.header("Accept", "application/json")
-            //.asStringAsync();
             string result = response.Result.Body;
             RandomRecipeObject rootObject = JsonConvert.DeserializeObject<RandomRecipeObject>(result);
-            
+
+            Recipe newRecipe = UpdateNewRecipe(rootObject);
+            return rootObject;
+        }
+
+        public Recipe UpdateNewRecipe(RandomRecipeObject rootObject)
+        {
             Recipe newRecipe = new Recipe
             {
                 apiId = rootObject.recipes[0].id,
@@ -148,7 +130,6 @@ namespace MealPlanner
 
             _context.Recipe.Add(newRecipe);
             _context.SaveChanges();
-            GetAnalyzedReceipeInstructions(newRecipe);
             return newRecipe;
         }
     }

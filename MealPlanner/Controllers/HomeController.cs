@@ -48,5 +48,12 @@ namespace MealPlanner.Controllers
         {
             return View();
         }
+
+        public void NewRandomRecipe()
+        {
+            RapidApiConnection rapidApiConnection = new RapidApiConnection();
+            var newRecipe = rapidApiConnection.GetRandomRecipe();
+            
+        }
     }
 }
