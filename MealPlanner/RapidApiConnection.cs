@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Text;
-
+using Newtonsoft.Json.Linq;
 
 namespace MealPlanner
 {
@@ -72,20 +72,26 @@ namespace MealPlanner
 
             GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(result);
             var root = rootObject[0];
+
             GetAnalyzedInstructions instructions = new GetAnalyzedInstructions
             {
                 name = recipe.title,
                 steps = root.steps
 
             };
+
+            recipe.RecipeSteps = instructions.steps;
+            List<object> gettingIngredients = new List<object>();
             foreach (var step in root.steps)
             {
-                recipe.RecipeSteps.Add(step);
-                if (step.ingredients != null)
+                if ((step.ingredients != null) && (step.ingredients.Count != 0))
                 {
-                    recipe.Ingredients.Add(step.ingredients.ToString());
+                    gettingIngredients.Add(step.ingredients);
                 }
             }
+
+            
+           // recipe.Ingredients = gettingIngredients;
             _context.SaveChanges();
         }
 
@@ -134,6 +140,42 @@ namespace MealPlanner
             return newRecipe;
         }
 
-        
+        public void GetRecipeInfoCall(Recipe recipe)
+        {
+            string urlString = recipe.apiId.ToString() + "/information?includeNutrition=false";
+            var response = GetApiRequest(urlString);
+            var result = response.Result.Body;
+            //RandomRecipeObject rootObject = JsonConvert.DeserializeObject<RandomRecipeObject>(result);
+            JObject jobject = JObject.Parse(result);
+            var ingredientInfo = jobject.SelectToken("extendedIngredients");
+            var stepInfo = jobject.SelectToken("analyzedInstructions");
+
+            List<string> ingredientsRetreived = new List<string>();
+            List<GetAnalyzedInstructionsStep> stepsRetreived = new List<GetAnalyzedInstructionsStep>();
+
+            foreach (var ingredient in ingredientInfo)
+            {
+                ingredientsRetreived.Add(ingredient.SelectToken("name").ToString());
+            }
+
+            GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(stepInfo.ToString());
+            var root = rootObject[0];
+
+            GetAnalyzedInstructions instructions = new GetAnalyzedInstructions
+            {
+                name = recipe.title,
+                steps = root.steps
+
+            };
+            foreach (var step in instructions.steps)
+            {
+                stepsRetreived.Add(step);
+            }
+            recipe.Ingredients = ingredientsRetreived;
+            recipe.RecipeSteps = stepsRetreived;
+
+            _context.SaveChanges();
+        }
+
     }
 }
