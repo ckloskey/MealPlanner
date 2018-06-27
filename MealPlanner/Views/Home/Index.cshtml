@@ -13,7 +13,7 @@
     {
 
         int dayOfWeekInt = ((i + 7) % 7);
-        DayOfWeek weekday = DateTime.Now.DayOfWeek + dayOfWeekInt;
+        DayOfWeek weekday = DateTime.Today.AddDays(dayOfWeekInt).DayOfWeek;
         i++;
 
         <tr>
