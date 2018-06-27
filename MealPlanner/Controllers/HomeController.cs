@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MealPlanner.Models;
@@ -32,6 +33,15 @@ namespace MealPlanner.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Recipe recipeItem = _context.Recipe.Find(id);
+            _context.Recipe.Remove(recipeItem);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
