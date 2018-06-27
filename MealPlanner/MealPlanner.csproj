@@ -351,6 +351,7 @@
     <Content Include="Views\ShoppingItems\Details.cshtml" />
     <Content Include="Views\ShoppingItems\Edit.cshtml" />
     <Content Include="Views\ShoppingItems\Index.cshtml" />
+    <Content Include="Views\Home\ViewRecipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

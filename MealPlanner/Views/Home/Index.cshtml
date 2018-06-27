@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div>
@@ -17,24 +18,29 @@
         i++;
 
         <tr>
-            <td>
+            <td class="col-md-1">
                 @weekday
             </td>
             <td>
-                <div class="col-lg-5">
-                    @Html.LabelFor(modelItem => item.title)
-                    @Html.DisplayFor(modelItem => item.title)
+                <div class="col-md-4">
+                    <p>
+                        @Html.LabelFor(modelItem => item.title)
+                        @Html.DisplayFor(modelItem => item.title)
+                    </p>
+
                 </div>
             </td>
 
             <td>
-                <div class="col-lg-3">
+                <div class="col-md-4">
                     <img src="@Html.DisplayFor(modelItem => item.image)">
                 </div>
             </td>
             <td>
-                <div class="col-lg-2">
-                    @Html.ActionLink("New", "Index")
+                <div class="col-md-3">
+                    @Html.ActionLink("View Recipe", "ViewRecipe", new { id = item.Id })
+                    @Html.ActionLink("Replace With Similar", "Index")
+                    @Html.ActionLink("Replace With Random", "Index")
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </div>
             </td>
