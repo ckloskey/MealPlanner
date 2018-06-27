@@ -10,9 +10,10 @@ namespace MealPlanner.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DatePurchased { get; set; }
         public int ExpirationInDays { get; set; }
-
+        [Display(Name="Food Category")]
         public int FoodCategoryId { get; set; }
         public List<FoodCategory> FoodCategories { get; set; }
 
