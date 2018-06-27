@@ -12,34 +12,8 @@
     @foreach (var item in Model)
     {
 
-
-        DayOfWeek weekday = DateTime.Now.DayOfWeek;
-        int day = ((i + 7) % 7);
-        switch (day)
-        {
-            case 0:
-                weekday = DateTime.Now.DayOfWeek;
-                break;
-            case 1:
-                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
-                break;
-            case 2:
-                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
-                break;
-            case 3:
-                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
-                break;
-            case 4:
-                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
-                break;
-            case 5:
-                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
-                break;
-            case 6:
-                weekday = (DayOfWeek)(DateTime.Now.DayOfWeek + i);
-                break;
-
-        }
+        int dayOfWeekInt = ((i + 7) % 7);
+        DayOfWeek weekday = DateTime.Now.DayOfWeek + dayOfWeekInt;
         i++;
 
         <tr>
