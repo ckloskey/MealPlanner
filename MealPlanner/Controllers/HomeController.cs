@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,11 +50,35 @@ namespace MealPlanner.Controllers
             return View();
         }
 
-        public void NewRandomRecipe()
+        public ActionResult NewRandomRecipe([Bind(Include = "Id,apiId,title,image")] Recipe recipe)
         {
+            Recipe prevRecipe = _context.Recipe.Find(recipe.Id);
             RapidApiConnection rapidApiConnection = new RapidApiConnection();
             var newRecipe = rapidApiConnection.GetRandomRecipe();
-            
+
+                prevRecipe.apiId = newRecipe.recipes[0].id;
+                prevRecipe.title = newRecipe.recipes[0].title;
+                prevRecipe.image = newRecipe.recipes[0].image;
+
+                _context.SaveChanges();
+                
+            return RedirectToAction("Index");
         }
+
+        public ActionResult NewSimilarRecipe([Bind(Include = "Id,apiId,title,image")] Recipe recipe)
+        {
+            Recipe prevRecipe = _context.Recipe.Find(recipe.Id);
+            RapidApiConnection rapidApiConnection = new RapidApiConnection();
+            var newRecipe = rapidApiConnection.GetSimilarRecipe(prevRecipe);
+
+            prevRecipe.apiId = newRecipe.recipes[0].id;
+            prevRecipe.title = newRecipe.recipes[0].title;
+            prevRecipe.image = newRecipe.recipes[0].image;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
