@@ -125,8 +125,8 @@ namespace MealPlanner
             {
                 apiId = rootObject.recipes[0].id,
                 title = rootObject.recipes[0].title,
-                image = rootObject.recipes[0].image
-                
+                image = rootObject.recipes[0].image,
+                Saved = false
             };
 
             _context.Recipe.Add(newRecipe);
