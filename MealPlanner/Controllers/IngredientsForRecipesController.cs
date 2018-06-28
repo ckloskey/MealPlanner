@@ -18,12 +18,22 @@ namespace MealPlanner.Controllers
         public ActionResult Index()
         {
             var list = db.IngredientsForRecipes
-            .Where(c => !db.FoodItem
+                .Where(c => !db.FoodItem
                 .Select(b => b.Name)
                 .Contains(c.IngredientName)
-                     ).ToList();
+                     ).GroupBy(c => c.IngredientName).ToList();
             //var ingredientsForRecipes = db.IngredientsForRecipes.Include(i => i.IdForRecipe);
             return View(list);
+        }
+
+        public void Add(int id)
+        {
+            IngredientsForRecipes ingredientsForRecipes = db.IngredientsForRecipes.Find(id);
+            FoodItem itemToTransfer = new FoodItem
+            {
+                Name = ingredientsForRecipes.IngredientName,
+                DatePurchased = DateTime.Today
+            };
         }
 
         // GET: IngredientsForRecipes/Details/5
