@@ -11,5 +11,6 @@ namespace MealPlanner.Models
         [Key]
         public string name { get; set; }
         public List<GetAnalyzedInstructionsStep> steps { get; set; }
+        
     }
 }

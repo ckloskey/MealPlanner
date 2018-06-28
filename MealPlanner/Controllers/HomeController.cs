@@ -45,9 +45,10 @@ namespace MealPlanner.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ViewRecipe()
+        public ActionResult ViewRecipe(int id)
         {
-            return View();
+            Recipe recipeItem = _context.Recipe.Find(id);
+            return View(recipeItem);
         }
 
         public ActionResult NewRandomRecipe([Bind(Include = "Id,apiId,title,image")] Recipe recipe)
@@ -79,7 +80,6 @@ namespace MealPlanner.Controllers
 
             return View("Index");
         }
-
         public ActionResult Saved(Recipe recipe)
         {
             Recipe savingRecipe = _context.Recipe.Find(recipe.Id);

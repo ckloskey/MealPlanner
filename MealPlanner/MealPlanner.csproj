@@ -249,14 +249,6 @@
     <Compile Include="Migrations\201806261221007_CombiningSearchTablePropertiesInRecipeTable.Designer.cs">
       <DependentUpon>201806261221007_CombiningSearchTablePropertiesInRecipeTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.cs" />
-    <Compile Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.Designer.cs">
-      <DependentUpon>201806261536315_AddingMigrationJustToDeleteDbTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806261713138_RefreshMigrations1.cs" />
-    <Compile Include="Migrations\201806261713138_RefreshMigrations1.Designer.cs">
-      <DependentUpon>201806261713138_RefreshMigrations1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201806271546343_AddedSavedFieldToRecipes.cs" />
     <Compile Include="Migrations\201806271546343_AddedSavedFieldToRecipes.Designer.cs">
       <DependentUpon>201806271546343_AddedSavedFieldToRecipes.cs</DependentUpon>
@@ -265,6 +257,14 @@
     <Compile Include="Migrations\201806271600471_SeedingMoreFoodCategories.Designer.cs">
       <DependentUpon>201806271600471_SeedingMoreFoodCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806280116566_updatingChanges.cs" />
+    <Compile Include="Migrations\201806280116566_updatingChanges.Designer.cs">
+      <DependentUpon>201806280116566_updatingChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281353187_AddingTables.cs" />
+    <Compile Include="Migrations\201806281353187_AddingTables.Designer.cs">
+      <DependentUpon>201806281353187_AddingTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
@@ -272,6 +272,7 @@
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\GetAnalyzedInstructions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IngredientsForRecipes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RandomRecipeObject.cs" />
     <Compile Include="Models\RandomRecipeRootExtendedIngredients.cs" />
@@ -281,6 +282,7 @@
     <Compile Include="Models\ShoppingItem.cs" />
     <Compile Include="Models\GeneralUser.cs" />
     <Compile Include="Models\GetAnalyzedInstructionsStep.cs" />
+    <Compile Include="Models\StepsForRecipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RapidApiConnection.cs" />
     <Compile Include="Startup.cs" />
@@ -399,17 +401,17 @@
     <EmbeddedResource Include="Migrations\201806261221007_CombiningSearchTablePropertiesInRecipeTable.resx">
       <DependentUpon>201806261221007_CombiningSearchTablePropertiesInRecipeTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806261536315_AddingMigrationJustToDeleteDbTables.resx">
-      <DependentUpon>201806261536315_AddingMigrationJustToDeleteDbTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806261713138_RefreshMigrations1.resx">
-      <DependentUpon>201806261713138_RefreshMigrations1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806271546343_AddedSavedFieldToRecipes.resx">
       <DependentUpon>201806271546343_AddedSavedFieldToRecipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806271600471_SeedingMoreFoodCategories.resx">
       <DependentUpon>201806271600471_SeedingMoreFoodCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806280116566_updatingChanges.resx">
+      <DependentUpon>201806280116566_updatingChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281353187_AddingTables.resx">
+      <DependentUpon>201806281353187_AddingTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

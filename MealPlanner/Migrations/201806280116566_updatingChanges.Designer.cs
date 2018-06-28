@@ -7,13 +7,13 @@ namespace MealPlanner.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RefreshMigrations1 : IMigrationMetadata
+    public sealed partial class updatingChanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RefreshMigrations1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatingChanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806261713138_RefreshMigrations1"; }
+            get { return "201806280116566_updatingChanges"; }
         }
         
         string IMigrationMetadata.Source

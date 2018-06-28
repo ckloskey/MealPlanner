@@ -81,31 +81,28 @@ namespace MealPlanner
             };
 
             recipe.RecipeSteps = instructions.steps;
-            List<object> gettingIngredients = new List<object>();
+            List<string> gettingIngredients = new List<string>();
             foreach (var step in root.steps)
             {
                 if ((step.ingredients != null) && (step.ingredients.Count != 0))
                 {
-                    gettingIngredients.Add(step.ingredients);
+                    gettingIngredients.Add(step.ingredients.ToString());
                 }
             }
-
-            
-           // recipe.Ingredients = gettingIngredients;
+            recipe.Ingredients = gettingIngredients;
             _context.SaveChanges();
         }
 
         public void GetRandomRecipeMethods()
         {
-            GetAnalyzedReceipeInstructions(UpdateNewRecipe(GetRandomRecipe()));
+            GetRecipeInfoCall(UpdateNewRecipe(GetRandomRecipe()));
         }
         public RandomRecipeObject GetRandomRecipe()
         {
+            //Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=1")
             string urlString = "random?limitLicense=false&number=1";
             var response = GetApiRequest(urlString);
-            //Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=1")
             string result = response.Result.Body;
-
             RandomRecipeObject rootObject = JsonConvert.DeserializeObject<RandomRecipeObject>(result);
             return rootObject;
         }
@@ -115,12 +112,11 @@ namespace MealPlanner
 
         public RandomRecipeObject GetSimilarRecipe(Recipe recipe)
         {
+            //Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/156992/similar")
             string urlString = recipe.apiId.ToString() + "/similar";
             var response = GetApiRequest(urlString);
-            //Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/156992/similar")
             string result = response.Result.Body;
             RandomRecipeObject rootObject = JsonConvert.DeserializeObject<RandomRecipeObject>(result);
-
             Recipe newRecipe = UpdateNewRecipe(rootObject);
             return rootObject;
         }
@@ -145,7 +141,7 @@ namespace MealPlanner
             string urlString = recipe.apiId.ToString() + "/information?includeNutrition=false";
             var response = GetApiRequest(urlString);
             var result = response.Result.Body;
-            //RandomRecipeObject rootObject = JsonConvert.DeserializeObject<RandomRecipeObject>(result);
+
             JObject jobject = JObject.Parse(result);
             var ingredientInfo = jobject.SelectToken("extendedIngredients");
             var stepInfo = jobject.SelectToken("analyzedInstructions");
@@ -155,27 +151,32 @@ namespace MealPlanner
 
             foreach (var ingredient in ingredientInfo)
             {
-                ingredientsRetreived.Add(ingredient.SelectToken("name").ToString());
+                IngredientsForRecipes ingredientsFor = new IngredientsForRecipes
+                {
+                    RecipeId = recipe.Id,
+                    IngredientName = ingredient.SelectToken("name").ToString(),
+                    Amount = (double)ingredient.SelectToken("amount"),
+                    Unit = ingredient.SelectToken("unit").ToString()
+                };
+                _context.IngredientsForRecipes.Add(ingredientsFor);
             }
 
             GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(stepInfo.ToString());
             var root = rootObject[0];
 
-            GetAnalyzedInstructions instructions = new GetAnalyzedInstructions
+            foreach (var step in root.steps)
             {
-                name = recipe.title,
-                steps = root.steps
-
-            };
-            foreach (var step in instructions.steps)
-            {
-                stepsRetreived.Add(step);
+                
+                StepsForRecipe newStep = new StepsForRecipe
+                {
+                    RecipeId = recipe.Id,
+                    StepNumber = step.number,
+                    StepDescription = step.step
+                };
+                _context.StepsForRecipe.Add(newStep);
             }
-            recipe.Ingredients = ingredientsRetreived;
-            recipe.RecipeSteps = stepsRetreived;
-
             _context.SaveChanges();
-        }
 
+        }
     }
 }

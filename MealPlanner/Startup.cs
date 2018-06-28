@@ -13,9 +13,9 @@ namespace MealPlanner
             //ConfigureAuth(app);
             ApplicationDbContext db = new ApplicationDbContext();
             RapidApiConnection api = new RapidApiConnection();
-            var recipe = db.Recipe.Where(p => p.Id == 1).ToList();
-            
-            api.GetRecipeInfoCall(recipe[0]);
+            var recipe = db.Recipe.Where(p => p.Id == 11).ToList();
+            api.TestGetRecipeInfoCall(recipe[0]);
+            //api.GetRandomRecipeMethods();
 
         }
     }

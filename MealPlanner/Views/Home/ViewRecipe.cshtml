@@ -12,11 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.apiId)
+            @Html.HiddenFor(model => model.apiId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.apiId)
+            @Html.HiddenFor(model => model.apiId)
         </dd>
 
         <dt>
@@ -27,26 +27,27 @@
             @Html.DisplayFor(model => model.title)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.image)
+        <dt class="center-block">
+            <img src="@Html.DisplayFor(model => model.image)">
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.image)
         </dd>
-        @foreach (var item in Model.RecipeSteps)
-            {
-                <dt class="col-md-2">
-                    @Html.DisplayNameFor(model => item.number)
-                </dt>
-                <p class="col-md-10">
-                    @Html.DisplayFor(modelItem => item.step)
-                </p>
 
-            }
+        @foreach (var item in Model.RecipeSteps)
+         {
+
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => item.number)
+        </dt>
+
+        <p class="col-md-10">
+            @Html.DisplayFor(modelItem => item.step)
+        </p>
+         }
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back", "Index")
 </p>

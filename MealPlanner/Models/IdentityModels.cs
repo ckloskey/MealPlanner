@@ -27,8 +27,8 @@ namespace MealPlanner.Models
         public DbSet<ShoppingItem> ShoppingItem { get; set; }
         public DbSet<DietaryRestriction> DietaryRestriction { get; set; }
         public DbSet<SearchByIngredients> SearchByIngredients { get; set; }
-        public DbSet<GetAnalyzedInstructions> GetAnalyzedInstructions { get; set; }
-        public DbSet<GetAnalyzedInstructionsStep> GetAnalyzedInstructionSteps { get; set; }
+        public DbSet<IngredientsForRecipes> IngredientsForRecipes { get; set; }
+        public DbSet<StepsForRecipe> StepsForRecipe { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

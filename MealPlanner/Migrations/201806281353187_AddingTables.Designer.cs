@@ -7,13 +7,13 @@ namespace MealPlanner.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddingMigrationJustToDeleteDbTables : IMigrationMetadata
+    public sealed partial class AddingTables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingMigrationJustToDeleteDbTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingTables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806261536315_AddingMigrationJustToDeleteDbTables"; }
+            get { return "201806281353187_AddingTables"; }
         }
         
         string IMigrationMetadata.Source
