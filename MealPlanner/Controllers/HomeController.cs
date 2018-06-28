@@ -72,10 +72,12 @@ namespace MealPlanner.Controllers
                 prevRecipe.apiId = newRecipe.recipes[0].id;
                 prevRecipe.title = newRecipe.recipes[0].title;
                 prevRecipe.image = newRecipe.recipes[0].image;
+                prevRecipe.Saved = false;
 
-                _context.SaveChanges();
+            rapidApiConnection.GetRecipeInfoCall(prevRecipe);
+            _context.SaveChanges();
                 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult NewSimilarRecipe([Bind(Include = "Id,apiId,title,image")] Recipe recipe)
