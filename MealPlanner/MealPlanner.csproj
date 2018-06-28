@@ -215,6 +215,7 @@
     <Compile Include="Controllers\FoodItemsController.cs" />
     <Compile Include="Controllers\GeneralUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IngredientsForRecipesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ShoppingItemsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -367,6 +368,11 @@
     <Content Include="Views\ShoppingItems\Edit.cshtml" />
     <Content Include="Views\ShoppingItems\Index.cshtml" />
     <Content Include="Views\Home\ViewRecipe.cshtml" />
+    <Content Include="Views\IngredientsForRecipes\Create.cshtml" />
+    <Content Include="Views\IngredientsForRecipes\Delete.cshtml" />
+    <Content Include="Views\IngredientsForRecipes\Details.cshtml" />
+    <Content Include="Views\IngredientsForRecipes\Edit.cshtml" />
+    <Content Include="Views\IngredientsForRecipes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

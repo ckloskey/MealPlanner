@@ -14,7 +14,7 @@ namespace MealPlanner.Controllers
 
         //On delete, also delete ingredients with recipeId (X)
         //on ShoppingList click, query IngredientName not found in FoodItems table (X)
-            //if IngredientName already exists in shoppingList, then add quantity
+        //if IngredientName already exists in shoppingList, then add quantity
         //On actionlink click, transfer item to fridge table, and delete from shopping list
         ApplicationDbContext _context;
         public HomeController()
