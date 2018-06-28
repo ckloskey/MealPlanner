@@ -36,10 +36,10 @@
             @Html.DisplayFor(modelItem => item.ExpirationInDays)
         </td>
         <td>
-            @if (DateTime.Today <= (item.DatePurchased.AddDays(item.ExpirationInDays).Date))
-        {
-            <p>Might Be Expired!</p>
-    }
+            @if (DateTime.Today.Date >= (item.DatePurchased.AddDays(item.ExpirationInDays)))
+             {
+                <p>Might Be Expired!</p>
+             }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

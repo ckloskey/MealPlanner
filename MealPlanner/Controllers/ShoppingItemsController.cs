@@ -17,9 +17,30 @@ namespace MealPlanner.Controllers
         // GET: ShoppingItems
         public ActionResult Index()
         {
+           var list = db.IngredientsForRecipes
+                    .Where(c => !db.FoodItem
+                        .Select(b => b.Name)
+                        .Contains(c.IngredientName)
+                             ).ToList();
+            foreach(var listItem in list)
+            {
+                ShoppingItem newItem = new ShoppingItem
+                {
+                    FoodName = listItem.IngredientName,
+                   // Quantity = listItem.Amount
+                };
+                db.ShoppingItem.Add(newItem);
+            }
             return View(db.ShoppingItem.ToList());
         }
 
+
+        public void Add(int? id)
+        {
+            ShoppingItem shoppingItem = db.ShoppingItem.Find(id);
+
+
+        }
         // GET: ShoppingItems/Details/5
         public ActionResult Details(int? id)
         {

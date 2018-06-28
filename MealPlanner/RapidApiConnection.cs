@@ -63,36 +63,6 @@ namespace MealPlanner
             return newRecipe;
         }
 
-        //public void GetAnalyzedReceipeInstructions(Recipe recipe)
-        //{
-        //    //string urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe.apiId + "/analyzedInstructions?stepBreakdown=true";
-        //    string urlString = recipe.apiId.ToString() + "/analyzedInstructions?stepBreakdown=true";
-        //    var response = GetApiRequest(urlString);
-        //    string result = response.Result.Body;
-
-        //    GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(result);
-        //    var root = rootObject[0];
-
-        //    GetAnalyzedInstructions instructions = new GetAnalyzedInstructions
-        //    {
-        //        name = recipe.title,
-        //        steps = root.steps
-
-        //    };
-
-        //    recipe.RecipeSteps = instructions.steps;
-        //    List<string> gettingIngredients = new List<string>();
-        //    foreach (var step in root.steps)
-        //    {
-        //        if ((step.ingredients != null) && (step.ingredients.Count != 0))
-        //        {
-        //            gettingIngredients.Add(step.ingredients.ToString());
-        //        }
-        //    }
-        //    recipe.Ingredients = gettingIngredients;
-        //    _context.SaveChanges();
-        //}
-
         public void GetRandomRecipeMethods()
         {
             GetRecipeInfoCall(UpdateNewRecipe(GetRandomRecipe()));
@@ -176,5 +146,35 @@ namespace MealPlanner
             }
             _context.SaveChanges();
         }
+
+        //public void GetAnalyzedReceipeInstructions(Recipe recipe)
+        //{
+        //    //string urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe.apiId + "/analyzedInstructions?stepBreakdown=true";
+        //    string urlString = recipe.apiId.ToString() + "/analyzedInstructions?stepBreakdown=true";
+        //    var response = GetApiRequest(urlString);
+        //    string result = response.Result.Body;
+
+        //    GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(result);
+        //    var root = rootObject[0];
+
+        //    GetAnalyzedInstructions instructions = new GetAnalyzedInstructions
+        //    {
+        //        name = recipe.title,
+        //        steps = root.steps
+
+        //    };
+
+        //    recipe.RecipeSteps = instructions.steps;
+        //    List<string> gettingIngredients = new List<string>();
+        //    foreach (var step in root.steps)
+        //    {
+        //        if ((step.ingredients != null) && (step.ingredients.Count != 0))
+        //        {
+        //            gettingIngredients.Add(step.ingredients.ToString());
+        //        }
+        //    }
+        //    recipe.Ingredients = gettingIngredients;
+        //    _context.SaveChanges();
+        //}
     }
 }
