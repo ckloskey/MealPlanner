@@ -21,9 +21,6 @@
         <th>
             @Html.DisplayNameFor(model => model.ExpirationInDays)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FoodCategoryId)
-        </th>
         <th></th>
     </tr>
 
@@ -39,15 +36,15 @@
             @Html.DisplayFor(modelItem => item.ExpirationInDays)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FoodCategories)
-            
+            @if (DateTime.Today <= (item.DatePurchased.AddDays(item.ExpirationInDays).Date))
+        {
+            <p>Might Be Expired!</p>
+    }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
-
     </tr>
 }
 

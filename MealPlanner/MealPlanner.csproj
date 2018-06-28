@@ -286,6 +286,7 @@
     <Compile Include="Models\ShoppingItem.cs" />
     <Compile Include="Models\GeneralUser.cs" />
     <Compile Include="Models\GetAnalyzedInstructionsStep.cs" />
+    <Compile Include="Models\SimilarRecipeDeserializer.cs" />
     <Compile Include="Models\StepsForRecipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RapidApiConnection.cs" />

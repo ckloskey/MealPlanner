@@ -12,6 +12,7 @@ namespace MealPlanner.Models
         public string Name { get; set; }
         [DataType(DataType.Date)]
         public DateTime DatePurchased { get; set; }
+        [Display(Name="Expiration (In number of Days)")]
         public int ExpirationInDays { get; set; }
         [Display(Name="Food Category")]
         public int FoodCategoryId { get; set; }

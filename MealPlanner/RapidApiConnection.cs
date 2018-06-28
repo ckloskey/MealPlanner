@@ -110,15 +110,14 @@ namespace MealPlanner
         //may have to use for filtering out allergies. Counts as 3 api calls
         //"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=false&excludeIngredients=coconut%2C+mango&fillIngredients=false&includeIngredients=onions%2C+lettuce%2C+tomato&instructionsRequired=false&intolerances=nuts&limitLicense=false&number=1&offset=<required>&ranking=2&type=main+course"
 
-        public RandomRecipeObject GetSimilarRecipe(Recipe recipe)
+        public SimilarRecipeDeserializer GetSimilarRecipe(Recipe recipe)
         {
             //Task<HttpResponse<string>> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/156992/similar")
             string urlString = recipe.apiId.ToString() + "/similar";
             var response = GetApiRequest(urlString);
             string result = response.Result.Body;
-            RandomRecipeObject rootObject = JsonConvert.DeserializeObject<RandomRecipeObject>(result);
-            Recipe newRecipe = UpdateNewRecipe(rootObject);
-            return rootObject;
+            SimilarRecipeDeserializer[] rootObject = JsonConvert.DeserializeObject<SimilarRecipeDeserializer[]>(result);
+            return rootObject[0];
         }
 
         public Recipe UpdateNewRecipe(RandomRecipeObject rootObject)

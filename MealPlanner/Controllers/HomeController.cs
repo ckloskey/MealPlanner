@@ -86,14 +86,17 @@ namespace MealPlanner.Controllers
             RapidApiConnection rapidApiConnection = new RapidApiConnection();
             var newRecipe = rapidApiConnection.GetSimilarRecipe(prevRecipe);
 
-            prevRecipe.apiId = newRecipe.recipes[0].id;
-            prevRecipe.title = newRecipe.recipes[0].title;
-            prevRecipe.image = newRecipe.recipes[0].image;
+            prevRecipe.apiId = newRecipe.id;
+            prevRecipe.title = newRecipe.title;
+            prevRecipe.image = newRecipe.image;
+            prevRecipe.Saved = false;
 
+            rapidApiConnection.GetRecipeInfoCall(prevRecipe);
             _context.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
+
         public ActionResult Saved(Recipe recipe)
         {
             Recipe savingRecipe = _context.Recipe.Find(recipe.Id);
