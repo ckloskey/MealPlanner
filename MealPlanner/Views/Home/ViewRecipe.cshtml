@@ -17,18 +17,36 @@
         <dt>
             <img src="@Html.DisplayFor(model => model.image)" style="height:15rem">
         </dt>
-
-        @foreach (var item in Model.RecipeSteps)
+        @foreach (var item in Model.Ingredients)
         {
         <dl class="dl-vertical">
-                <dd>
-                    @Html.DisplayFor(model => item.StepNumber).
-                        @Html.DisplayFor(modelItem => item.StepDescription)
-                </dd>
+            <dd>
+                @if (item.Unit == null)
+                {
+                 @Html.DisplayFor(modelItem => item.Amount)
+                }
+                else
+                {
+                        @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.Unit)
+
+                }
+
+                @Html.DisplayFor(model => item.IngredientName)
+
+            </dd>
+        </dl>
+        }
+        @foreach (var item in Model.RecipeSteps)
+    {
+        <dl class="dl-vertical">
+            <dd>
+                @Html.DisplayFor(model => item.StepNumber).
+                @Html.DisplayFor(modelItem => item.StepDescription)
+            </dd>
 
         </dl>
 
-        }
+}
     </dl>
 
 
