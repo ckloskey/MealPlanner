@@ -20,13 +20,13 @@ namespace MealPlanner.Controllers
             var list = db.IngredientsForRecipes
                 .Where(c => !db.FoodItem
                 .Select(b => b.Name)
-                .Contains(c.IngredientName)
-                     ).GroupBy(c => c.IngredientName).ToList();
+                .Contains(c.IngredientName))
+                .ToList();
             //var ingredientsForRecipes = db.IngredientsForRecipes.Include(i => i.IdForRecipe);
             return View(list);
         }
 
-        public void Add(int id)
+        public ActionResult Add(int id)
         {
             IngredientsForRecipes ingredientsForRecipes = db.IngredientsForRecipes.Find(id);
             FoodItem itemToTransfer = new FoodItem
@@ -34,6 +34,9 @@ namespace MealPlanner.Controllers
                 Name = ingredientsForRecipes.IngredientName,
                 DatePurchased = DateTime.Today
             };
+            db.FoodItem.Add(itemToTransfer);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: IngredientsForRecipes/Details/5
