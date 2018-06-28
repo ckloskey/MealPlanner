@@ -265,6 +265,10 @@
     <Compile Include="Migrations\201806281353187_AddingTables.Designer.cs">
       <DependentUpon>201806281353187_AddingTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806281500196_CheckingForWeirdStuff.cs" />
+    <Compile Include="Migrations\201806281500196_CheckingForWeirdStuff.Designer.cs">
+      <DependentUpon>201806281500196_CheckingForWeirdStuff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
@@ -412,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806281353187_AddingTables.resx">
       <DependentUpon>201806281353187_AddingTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281500196_CheckingForWeirdStuff.resx">
+      <DependentUpon>201806281500196_CheckingForWeirdStuff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

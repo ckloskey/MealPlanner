@@ -32,7 +32,6 @@ namespace MealPlanner.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -48,6 +47,19 @@ namespace MealPlanner.Controllers
         public ActionResult ViewRecipe(int id)
         {
             Recipe recipeItem = _context.Recipe.Find(id);
+            var retreivedIngredients = (
+                from item in _context.IngredientsForRecipes
+                where item.RecipeId == recipeItem.Id
+                select item
+                ).ToList();
+            recipeItem.Ingredients = retreivedIngredients;
+            var retreivedSteps = (
+                from item in _context.StepsForRecipe
+                where item.RecipeId == recipeItem.Id
+                select item
+                ).ToList();
+            recipeItem.RecipeSteps = retreivedSteps;
+
             return View(recipeItem);
         }
 
