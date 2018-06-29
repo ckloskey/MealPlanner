@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Amount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Unit)
+            @Html.HiddenFor(modelItem => item.Unit)
         </td>
         <td>
             @Html.ActionLink("Add", "Add", new { id=item.ArbitraryId }) |

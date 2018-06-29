@@ -18,9 +18,11 @@ namespace MealPlanner.Controllers
         public ActionResult Index()
         {
             var list = db.IngredientsForRecipes
-                .Where(c => !db.FoodItem
-                .Select(b => b.Name)
-                .Contains(c.IngredientName))
+                .Where(c => !db.FoodItem.Select(b => b.Name).Contains(c.IngredientName)).ToList()
+                .GroupBy(x => new { x.IngredientName, x.Amount }).Select(g => new IngredientsForRecipes {
+                    IngredientName = g.Key.IngredientName,
+                    Amount = g.Sum(x=> x.Amount)
+                })
                 .ToList();
             //var ingredientsForRecipes = db.IngredientsForRecipes.Include(i => i.IdForRecipe);
             return View(list);
