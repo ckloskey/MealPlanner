@@ -5,12 +5,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>
-    @Html.ActionLink("New Meals", "NewMeals")
-</h3>
+
 @{int i = 0; }
 @foreach (var item in Model)
 {
+    if (i == 0 && item.Saved != true)
+    {
+        <h2>
+            This Week
+        </h2>
+        <ul>
+            <li>
+                <h4>
+                    @Html.ActionLink("Give Me New Receipes", "NewMeals")
+                </h4>
+            </li>
+        </ul>
+
+    }
+    else if (i == 0 && item.Saved == true)
+    {
+        <h2>
+            Saved Recipes
+        </h2>
+    }
     <div class="row">
         @if (item.Saved == false)
         {
@@ -31,10 +49,10 @@
 
                 @if (item.Saved == false)
                 {
-                <li>@Html.ActionLink("Save", "Saved", new { id = item.Id }) </li>
-                <li>@Html.ActionLink("Replace With Similar", "NewSimilarRecipe", new { id = item.Id })</li>
-                <li>@Html.ActionLink("Replace With Random", "NewRandomRecipe", new { id = item.Id })</li>
-                 }
+                    <li>@Html.ActionLink("Save", "Saved", new { id = item.Id }) </li>
+                    <li>@Html.ActionLink("Replace With Similar", "NewSimilarRecipe", new { id = item.Id })</li>
+                    <li>@Html.ActionLink("Replace With Random", "NewRandomRecipe", new { id = item.Id })</li>
+                }
                 <li>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
             </ul>
         </div>
@@ -47,7 +65,7 @@
 
 
 
-        
+
     </div>
 }
 
