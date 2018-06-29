@@ -24,10 +24,9 @@
                 {
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("In The Fridge", "Index", "FoodItems")</li>
                     <li>@Html.ActionLink("Shopping List", "Index", "IngredientsForRecipes")</li>
-                    <li>@Html.ActionLink("Saved Recipes", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Saved Recipes", "SavedRecipes", "Home")</li>
                 </ul>
                  }
 
@@ -39,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - A Craig MF Kloskey Production</p>
+            <p>&copy; @DateTime.Now.Year - A Craig Kloskey Production</p>
         </footer>
     </div>
 

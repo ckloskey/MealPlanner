@@ -16,10 +16,23 @@ namespace MealPlanner.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult Index(bool saved = false)
         {
-            var recipies = _context.Recipe.ToList();
+            object recipies = null;
+            if (saved == false)
+            {
+                recipies = _context.Recipe.Where(p => p.Saved == false).ToList();
+            }
+            else
+            {
+                recipies = _context.Recipe.Where(p => p.Saved == true).ToList();
+            }
             return View(recipies);
+        }
+
+        public ActionResult SavedRecipes()
+        {
+            return RedirectToAction("Index", new { saved = true });
         }
         
         public ActionResult About()
@@ -84,7 +97,6 @@ namespace MealPlanner.Controllers
 
             rapidApiConnection.GetRecipeInfoCall(prevRecipe);
             _context.SaveChanges();
-                
             return RedirectToAction("Index");
         }
 
@@ -105,12 +117,29 @@ namespace MealPlanner.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult NewMeals()
+        {
+            DeleteUnsavedRecipes();
+
+            return View("Index");
+        }
+
+        private void DeleteUnsavedRecipes()
+        {
+            var recipesToRemove = _context.Recipe.Where(p => p.Saved == false).ToList();
+            foreach(var recipe in recipesToRemove)
+            {
+                _context.Recipe.Remove(recipe);
+            }
+            _context.SaveChangesAsync();
+        }
+
         public ActionResult Saved(Recipe recipe)
         {
             Recipe savingRecipe = _context.Recipe.Find(recipe.Id);
             savingRecipe.Saved = true;
             _context.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
     }

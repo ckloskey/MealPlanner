@@ -34,7 +34,6 @@ namespace MealPlanner
             .header("Accept", "application/json")
             .asStringAsync();
             return response;
-            
         }
         public Recipe SearchByIngredients()
         {

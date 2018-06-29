@@ -5,39 +5,51 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    @{int i = 0; }
-    @foreach (var item in Model)
-    {
+<h3>
+    @Html.ActionLink("New Meals", "NewMeals")
+</h3>
+@{int i = 0; }
+@foreach (var item in Model)
+{
+    <div class="row">
+        @if (item.Saved == false)
+        {
+            int dayOfWeekInt = ((i + 7) % 7);
+            DayOfWeek weekday = DateTime.Today.AddDays(dayOfWeekInt).DayOfWeek;
+            i++;
 
-        int dayOfWeekInt = ((i + 7) % 7);
-        DayOfWeek weekday = DateTime.Today.AddDays(dayOfWeekInt).DayOfWeek;
-        i++;
 
-        <div class="row">
             <h2>
                 @weekday
             </h2>
+        }
 
-            <div class="col-md-4">
-                @Html.DisplayFor(modelItem => item.title)
-                <ul>
-                    <li>@Html.ActionLink("View Recipe", "ViewRecipe", new { id = item.Id }) </li>
-                    <li>@Html.ActionLink("Save", "Saved", new { id = item.Id }) </li>
-                    <li>@Html.ActionLink("Replace With Similar", "NewSimilarRecipe", new { id = item.Id })</li>
-                    <li>@Html.ActionLink("Replace With Random", "NewRandomRecipe", new { id = item.Id })</li>
-                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
-                </ul>
-            </div>
+        <div class="col-md-4">
+            @Html.DisplayFor(modelItem => item.title)
+            <ul>
+                <li>@Html.ActionLink("View Recipe", "ViewRecipe", new { id = item.Id }) </li>
 
-                <div class="col-md-8">
-                    <img src="@Html.DisplayFor(modelItem => item.image)" style="height:35rem">
-                </div>
-                <div class="col-md-4">
-                </div>
+                @if (item.Saved == false)
+                {
+                <li>@Html.ActionLink("Save", "Saved", new { id = item.Id }) </li>
+                <li>@Html.ActionLink("Replace With Similar", "NewSimilarRecipe", new { id = item.Id })</li>
+                <li>@Html.ActionLink("Replace With Random", "NewRandomRecipe", new { id = item.Id })</li>
+                 }
+                <li>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+            </ul>
         </div>
-    }
+
+        <div class="col-md-8">
+            <img src="@Html.DisplayFor(modelItem => item.image)" style="height:35rem">
+        </div>
+        <div class="col-md-4">
+        </div>
 
 
+
+        
+    </div>
+}
 
 
 
