@@ -19,10 +19,11 @@ namespace MealPlanner.Controllers
         {
             var list = db.IngredientsForRecipes
                 .Where(c => !db.FoodItem.Select(b => b.Name).Contains(c.IngredientName)).ToList()
-                .GroupBy(x => new { x.IngredientName, x.Amount }).Select(g => new IngredientsForRecipes {
-                    IngredientName = g.Key.IngredientName,
-                    Amount = g.Sum(x=> x.Amount)
-                })
+                //.GroupBy(x => new { x.IngredientName, x.Amount }).Select(g => new IngredientsForRecipes
+                //{
+                //    IngredientName = g.Key.IngredientName,
+                //    Amount = g.Sum(x => x.Amount)
+                //})
                 .ToList();
             //var ingredientsForRecipes = db.IngredientsForRecipes.Include(i => i.IdForRecipe);
             return View(list);
@@ -34,7 +35,8 @@ namespace MealPlanner.Controllers
             FoodItem itemToTransfer = new FoodItem
             {
                 Name = ingredientsForRecipes.IngredientName,
-                DatePurchased = DateTime.Today
+                DatePurchased = DateTime.Today,
+                FoodCategoryId = 13
             };
             db.FoodItem.Add(itemToTransfer);
             db.SaveChanges();
@@ -132,7 +134,7 @@ namespace MealPlanner.Controllers
         // POST: IngredientsForRecipes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             IngredientsForRecipes ingredientsForRecipes = db.IngredientsForRecipes.Find(id);
             db.IngredientsForRecipes.Remove(ingredientsForRecipes);

@@ -23,7 +23,7 @@ namespace MealPlanner.Controllers
         public ActionResult Index()
         {
             RapidApiConnection api = new RapidApiConnection();
-           var recipies =  api.SearchByIngredients();
+           api.SearchByIngredients();
             return View();
         }
 

@@ -35,12 +35,12 @@ namespace MealPlanner
             .asStringAsync();
             return response;
         }
-        public Recipe SearchByIngredients()
+        public void SearchByIngredients()
         {
             var fridgeItems = _context.FoodItem.ToList();
             var ingredientsList = string.Join(",", fridgeItems.Select(o => o.Name));
             
-            string urlString = "findByIngredients?ingredients=" + ingredientsList + "&number=1&ranking=2";
+            string urlString = "findByIngredients?ingredients=" + ingredientsList + "&number=4&ranking=1";
             //ingredients to be included
             //ranking == "1" <-- maximizes ingredients
             var response = GetApiRequest(urlString);
@@ -48,18 +48,26 @@ namespace MealPlanner
             string result = response.Result.Body;
 
             SearchByIngredients[] rootObject = JsonConvert.DeserializeObject<SearchByIngredients[]>(result);
-            var root = rootObject[0];
-            Recipe newRecipe = new Recipe
+            //var root = rootObject[0];
+            try
             {
-                apiId = root.id,
-                title = root.title,
-                image = root.image
-            };
-
-            _context.Recipe.Add(newRecipe);
-            _context.SaveChanges();
-            GetRecipeInfoCall(newRecipe);
-            return newRecipe;
+                foreach (var recipe in rootObject)
+                {
+                    Recipe newRecipe = new Recipe
+                    {
+                        apiId = recipe.id,
+                        title = recipe.title,
+                        image = recipe.image
+                    };
+                    _context.Recipe.Add(newRecipe);
+                    _context.SaveChanges();
+                    GetRecipeInfoCall(newRecipe);
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                _context.SaveChanges();
+            }
         }
 
         public void GetRandomRecipeMethods()
@@ -130,19 +138,26 @@ namespace MealPlanner
             }
 
             GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(stepInfo.ToString());
-            var root = rootObject[0];
-
-            foreach (var step in root.steps)
+            try
             {
-                
-                StepsForRecipe newStep = new StepsForRecipe
+                var root = rootObject[0];
+                foreach (var step in root.steps)
                 {
-                    RecipeId = recipe.Id,
-                    StepNumber = step.number,
-                    StepDescription = step.step
-                };
-                _context.StepsForRecipe.Add(newStep);
+                    StepsForRecipe newStep = new StepsForRecipe
+                    {
+                        RecipeId = recipe.Id,
+                        StepNumber = step.number,
+                        StepDescription = step.step
+                    };
+                    _context.StepsForRecipe.Add(newStep);
+                }
             }
+            catch (IndexOutOfRangeException)
+            {
+                Recipe ignoringRecipe = _context.Recipe.Find(recipe.Id);
+                _context.Recipe.Remove(ignoringRecipe);
+            }
+
             _context.SaveChanges();
         }
 

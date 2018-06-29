@@ -278,6 +278,10 @@
     <Compile Include="Migrations\201806291506450_SeedingIntolerancesThatWorkForApi.Designer.cs">
       <DependentUpon>201806291506450_SeedingIntolerancesThatWorkForApi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806291926406_SeedingRecordIntoCategory.cs" />
+    <Compile Include="Migrations\201806291926406_SeedingRecordIntoCategory.Designer.cs">
+      <DependentUpon>201806291926406_SeedingRecordIntoCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
@@ -440,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806291506450_SeedingIntolerancesThatWorkForApi.resx">
       <DependentUpon>201806291506450_SeedingIntolerancesThatWorkForApi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806291926406_SeedingRecordIntoCategory.resx">
+      <DependentUpon>201806291926406_SeedingRecordIntoCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,22 +12,29 @@ namespace MealPlanner.Controllers
     public class HomeController : Controller
     {
         ApplicationDbContext _context;
+        RapidApiConnection rapidApiConnection;
         public HomeController()
         {
             _context = new ApplicationDbContext();
+            rapidApiConnection = new RapidApiConnection();
         }
         public ActionResult Index(bool saved = false)
         {
-            object recipies = null;
             if (saved == false)
             {
-                recipies = _context.Recipe.Where(p => p.Saved == false).ToList();
+                var recipies = _context.Recipe.Where(p => p.Saved == false).ToList();
+                if (recipies.Count == 0 || recipies == null)
+                {
+                    rapidApiConnection.GetRandomRecipeMethods();
+                    recipies = _context.Recipe.Where(p => p.Saved == false).ToList();
+                }
+                return View(recipies);
             }
             else
             {
-                recipies = _context.Recipe.Where(p => p.Saved == true).ToList();
+                var recipies = _context.Recipe.Where(p => p.Saved == true).ToList();
+                return View(recipies);
             }
-            return View(recipies);
         }
 
         public ActionResult SavedRecipes()
@@ -47,7 +54,6 @@ namespace MealPlanner.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
-
 
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
@@ -87,7 +93,6 @@ namespace MealPlanner.Controllers
         public ActionResult NewRandomRecipe([Bind(Include = "Id,apiId,title,image")] Recipe recipe)
         {
             Recipe prevRecipe = _context.Recipe.Find(recipe.Id);
-            RapidApiConnection rapidApiConnection = new RapidApiConnection();
             var newRecipe = rapidApiConnection.GetRandomRecipe();
 
                 prevRecipe.apiId = newRecipe.recipes[0].id;
@@ -103,7 +108,6 @@ namespace MealPlanner.Controllers
         public ActionResult NewSimilarRecipe([Bind(Include = "Id,apiId,title,image")] Recipe recipe)
         {
             Recipe prevRecipe = _context.Recipe.Find(recipe.Id);
-            RapidApiConnection rapidApiConnection = new RapidApiConnection();
             var newRecipe = rapidApiConnection.GetSimilarRecipe(prevRecipe);
 
             prevRecipe.apiId = newRecipe.id;
@@ -116,12 +120,17 @@ namespace MealPlanner.Controllers
 
             return RedirectToAction("Index");
         }
+        public void NewSearchByIngredients()
+        {
+            rapidApiConnection.SearchByIngredients();
+        }
 
         public ActionResult NewMeals()
         {
             DeleteUnsavedRecipes();
-
-            return View("Index");
+            NewSearchByIngredients();
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         private void DeleteUnsavedRecipes()

@@ -13,29 +13,38 @@
         <dd style="font-size:3rem">
             @Html.DisplayFor(model => model.title)
         </dd>
-
+        <p>
+            @Html.ActionLink("Back", "Index")
+        </p>
         <dt>
             <img src="@Html.DisplayFor(model => model.image)" style="height:15rem">
         </dt>
+        <h4>
+            Ingredients
+        </h4>
         @foreach (var item in Model.Ingredients)
-        {
+    {
         <dl class="dl-vertical">
             <dd>
                 @if (item.Unit == null)
-                {
-                 @Html.DisplayFor(modelItem => item.Amount)
-                }
-                else
-                {
-                        @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.Unit)
+            {
+                @Html.DisplayFor(modelItem => item.Amount)
+        }
+        else
+        {
+            @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.Unit)
 
-                }
+    }
 
                 @Html.DisplayFor(model => item.IngredientName)
 
             </dd>
         </dl>
-        }
+}
+
+        <h4>
+            Instructions
+        </h4>
         @foreach (var item in Model.RecipeSteps)
     {
         <dl class="dl-vertical">

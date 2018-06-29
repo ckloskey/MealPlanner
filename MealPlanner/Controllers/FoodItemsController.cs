@@ -62,11 +62,13 @@ namespace MealPlanner.Controllers
         // GET: FoodItems/Edit/5
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             FoodItem foodItem = db.FoodItem.Find(id);
+            foodItem.FoodCategories = db.FoodCategory.ToList();
             if (foodItem == null)
             {
                 return HttpNotFound();
