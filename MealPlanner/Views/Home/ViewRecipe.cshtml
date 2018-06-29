@@ -19,48 +19,54 @@
         <dt>
             <img src="@Html.DisplayFor(model => model.image)" style="height:15rem">
         </dt>
-        <h4>
-            Ingredients
-        </h4>
-        @foreach (var item in Model.Ingredients)
-    {
-        <dl class="dl-vertical">
-            <dd>
-                @if (item.Unit == null)
+        <div class="col-lg-6">
+            <h4>
+                Ingredients
+            </h4>
+            @foreach (var item in Model.Ingredients)
             {
-                @Html.DisplayFor(modelItem => item.Amount)
-        }
-        else
-        {
-            @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.Unit)
+                <dl class="dl-vertical">
+                    <dd>
+                        @if (item.Unit == null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.Unit)
 
-    }
+                        }
 
-                @Html.DisplayFor(model => item.IngredientName)
+                        @Html.DisplayFor(model => item.IngredientName)
 
-            </dd>
-        </dl>
-}
+                    </dd>
+                </dl>
+            }
+        </div>
 
-        <h4>
-            Instructions
-        </h4>
-        @foreach (var item in Model.RecipeSteps)
-    {
-        <dl class="dl-vertical">
-            <dd>
-                @Html.DisplayFor(model => item.StepNumber).
-                @Html.DisplayFor(modelItem => item.StepDescription)
-            </dd>
 
-        </dl>
+        <div class=" col-md-6">
+            <h4>
+                Instructions
+            </h4>
+            @foreach (var item in Model.RecipeSteps)
+            {
+                <dl class="dl-vertical">
+                    <dd>
+                        @Html.DisplayFor(model => item.StepNumber).
+                        @Html.DisplayFor(modelItem => item.StepDescription)
+                    </dd>
 
-}
+                </dl>
+
+            }
     </dl>
+</div>
+<p>
+    @Html.ActionLink("Back", "Index")
+</p>
 
 
 </div>
 
-    <p>
-        @Html.ActionLink("Back", "Index")
-    </p>
+
