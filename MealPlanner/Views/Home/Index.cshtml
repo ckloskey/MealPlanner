@@ -35,11 +35,9 @@
             int dayOfWeekInt = ((i + 7) % 7);
             DayOfWeek weekday = DateTime.Today.AddDays(dayOfWeekInt).DayOfWeek;
             i++;
-
-
             <h2>
                 @weekday
-            </h2>
+           </h2>
         }
 
         <div class="col-md-4">

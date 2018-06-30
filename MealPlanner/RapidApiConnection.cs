@@ -161,6 +161,28 @@ namespace MealPlanner
             _context.SaveChanges();
         }
 
+        public void GetComplexRecipeCall(int numberOfRecipes)
+        {
+            var fridgeItems = _context.FoodItem.ToList();
+            var listOfIncludedIngredients = string.Join(",", fridgeItems.Select(o => o.Name));
+            var intolerances = _context.DietaryRestriction.ToList();
+            var listOfIntolerances = string.Join(",", intolerances.Select(o => o.Restriction));
+            var listOfExcludedIngredients = listOfIntolerances;
+
+            string urlString = "searchComplex?addRecipeInformation=true&excludeIngredients=" + listOfExcludedIngredients + 
+                "&fillIngredients=false&includeIngredients=" + listOfIncludedIngredients + "&instructionsRequired=true&intolerances="
+                + listOfIntolerances + "&limitLicense=false&number=" + numberOfRecipes +"&offset=<required>&type=main+course";
+            var response = GetApiRequest(urlString);
+            string result = response.Result.Body;
+            //deserialize
+            //foreach(var recipe in result) 
+            //{ 
+                //update new recipe 
+
+            //} 
+
+        }
+
         //public void GetAnalyzedReceipeInstructions(Recipe recipe)
         //{
         //    //string urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe.apiId + "/analyzedInstructions?stepBreakdown=true";

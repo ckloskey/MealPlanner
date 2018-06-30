@@ -284,6 +284,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DeseriaizeComplexCallProductMatch.cs" />
+    <Compile Include="Models\DeserializeComplexCall.cs" />
+    <Compile Include="Models\DeserializeComplexCallAnalyzedinstructions.cs" />
+    <Compile Include="Models\DeserializeComplexCallinstructionSteps.cs" />
+    <Compile Include="Models\DeserializeComplexCallLength.cs" />
+    <Compile Include="Models\DeserializeComplexCallResult.cs" />
+    <Compile Include="Models\DeserializeComplexCallWinePairing.cs" />
     <Compile Include="Models\DietaryRestriction.cs" />
     <Compile Include="Models\FoodCategory.cs" />
     <Compile Include="Models\FoodItem.cs" />
