@@ -157,7 +157,6 @@ namespace MealPlanner
                 Recipe ignoringRecipe = _context.Recipe.Find(recipe.Id);
                 _context.Recipe.Remove(ignoringRecipe);
             }
-
             _context.SaveChanges();
         }
 
@@ -165,21 +164,23 @@ namespace MealPlanner
         {
             var fridgeItems = _context.FoodItem.ToList();
             var listOfIncludedIngredients = string.Join(",", fridgeItems.Select(o => o.Name));
-            var intolerances = _context.DietaryRestriction.ToList();
+            var intolerances = _context.DietaryRestriction.Where(o => o.IsAllergic == true).ToList();
             var listOfIntolerances = string.Join(",", intolerances.Select(o => o.Restriction));
             var listOfExcludedIngredients = listOfIntolerances;
 
             string urlString = "searchComplex?addRecipeInformation=true&excludeIngredients=" + listOfExcludedIngredients + 
                 "&fillIngredients=false&includeIngredients=" + listOfIncludedIngredients + "&instructionsRequired=true&intolerances="
-                + listOfIntolerances + "&limitLicense=false&number=" + numberOfRecipes +"&offset=<required>&type=main+course";
+                + listOfIntolerances + "&limitLicense=false&number=1&offset=<required>&type=main+course";
             var response = GetApiRequest(urlString);
             string result = response.Result.Body;
-            //deserialize
-            //foreach(var recipe in result) 
-            //{ 
-                //update new recipe 
-
-            //} 
+            DeserializeComplexCall[] rootObject = JsonConvert.DeserializeObject<DeserializeComplexCall[]>(result);
+            foreach (var recipeResult in rootObject)
+            {
+                Recipe recipe = new Recipe
+                {
+                  
+                };
+            }
 
         }
 

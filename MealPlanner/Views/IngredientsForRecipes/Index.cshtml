@@ -32,7 +32,7 @@
             @Html.HiddenFor(modelItem => item.Unit)
         </td>
         <td>
-            @Html.ActionLink("Add", "Add", new { id=item.ArbitraryId }) |
+            @Html.ActionLink("Add To Fridge", "Add", new { name=item.IngredientName}) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ArbitraryId })
         </td>
     </tr>

@@ -19,22 +19,22 @@ namespace MealPlanner.Controllers
         {
             var list = db.IngredientsForRecipes
                 .Where(c => !db.FoodItem.Select(b => b.Name).Contains(c.IngredientName)).ToList()
-                //.GroupBy(x => new { x.IngredientName, x.Amount }).Select(g => new IngredientsForRecipes
-                //{
-                //    IngredientName = g.Key.IngredientName,
-                //    Amount = g.Sum(x => x.Amount)
-                //})
+                .GroupBy(x => new { x.IngredientName, x.Amount }).Select(g => new IngredientsForRecipes
+                {
+                    IngredientName = g.Key.IngredientName,
+                    Amount = g.Sum(x => x.Amount)  
+                })
                 .ToList();
             //var ingredientsForRecipes = db.IngredientsForRecipes.Include(i => i.IdForRecipe);
             return View(list);
         }
 
-        public ActionResult Add(int id)
+        public ActionResult Add(string name)
         {
-            IngredientsForRecipes ingredientsForRecipes = db.IngredientsForRecipes.Find(id);
+            //IngredientsForRecipes ingredientsForRecipes = db.IngredientsForRecipes.Find(id);
             FoodItem itemToTransfer = new FoodItem
             {
-                Name = ingredientsForRecipes.IngredientName,
+                Name = name,
                 DatePurchased = DateTime.Today,
                 FoodCategoryId = 13
             };
@@ -123,6 +123,8 @@ namespace MealPlanner.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            
             IngredientsForRecipes ingredientsForRecipes = db.IngredientsForRecipes.Find(id);
             if (ingredientsForRecipes == null)
             {

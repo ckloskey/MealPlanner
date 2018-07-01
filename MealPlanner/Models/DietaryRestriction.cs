@@ -9,5 +9,6 @@ namespace MealPlanner.Models
     {
         public int Id { get; set; }
         public string Restriction { get; set; }
+        public bool IsAllergic { get; set; }
     }
 }

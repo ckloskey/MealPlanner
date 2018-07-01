@@ -212,6 +212,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DietaryRestrictions1Controller.cs" />
     <Compile Include="Controllers\FoodItemsController.cs" />
     <Compile Include="Controllers\GeneralUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -281,6 +282,10 @@
     <Compile Include="Migrations\201806291926406_SeedingRecordIntoCategory.cs" />
     <Compile Include="Migrations\201806291926406_SeedingRecordIntoCategory.Designer.cs">
       <DependentUpon>201806291926406_SeedingRecordIntoCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807011520007_AddingFieldToRestrictions.cs" />
+    <Compile Include="Migrations\201807011520007_AddingFieldToRestrictions.Designer.cs">
+      <DependentUpon>201807011520007_AddingFieldToRestrictions.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -392,6 +397,11 @@
     <Content Include="Views\IngredientsForRecipes\Details.cshtml" />
     <Content Include="Views\IngredientsForRecipes\Edit.cshtml" />
     <Content Include="Views\IngredientsForRecipes\Index.cshtml" />
+    <Content Include="Views\DietaryRestrictions1\Create.cshtml" />
+    <Content Include="Views\DietaryRestrictions1\Delete.cshtml" />
+    <Content Include="Views\DietaryRestrictions1\Details.cshtml" />
+    <Content Include="Views\DietaryRestrictions1\Edit.cshtml" />
+    <Content Include="Views\DietaryRestrictions1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -454,6 +464,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806291926406_SeedingRecordIntoCategory.resx">
       <DependentUpon>201806291926406_SeedingRecordIntoCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807011520007_AddingFieldToRestrictions.resx">
+      <DependentUpon>201807011520007_AddingFieldToRestrictions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

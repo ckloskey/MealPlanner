@@ -112,7 +112,7 @@ namespace MealPlanner.Controllers
 
             prevRecipe.apiId = newRecipe.id;
             prevRecipe.title = newRecipe.title;
-            prevRecipe.image = newRecipe.image;
+            prevRecipe.image = "https://spoonacular.com/recipeImages/" + newRecipe.image;
             prevRecipe.Saved = false;
 
             rapidApiConnection.GetRecipeInfoCall(prevRecipe);
