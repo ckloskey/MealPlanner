@@ -22,7 +22,7 @@ namespace MealPlanner.Controllers
                 .GroupBy(x => new { x.IngredientName, x.Amount }).Select(g => new IngredientsForRecipes
                 {
                     IngredientName = g.Key.IngredientName,
-                    Amount = g.Sum(x => x.Amount)  
+                    Amount = Math.Ceiling(g.Sum(x => x.Amount))
                 })
                 .ToList();
             //var ingredientsForRecipes = db.IngredientsForRecipes.Include(i => i.IdForRecipe);

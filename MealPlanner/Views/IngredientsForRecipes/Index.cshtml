@@ -19,22 +19,23 @@
         </th>
         <th></th>
     </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IngredientName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.HiddenFor(modelItem => item.Unit)
-        </td>
-        <td>
-            @Html.ActionLink("Add To Fridge", "Add", new { name=item.IngredientName}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ArbitraryId })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.IngredientName)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.ActionLink("Add To Fridge", "Add", new { name = item.IngredientName }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ArbitraryId })
+            </td>
+        </tr>
+    }
 </table>

@@ -151,6 +151,7 @@ namespace MealPlanner
                     };
                     _context.StepsForRecipe.Add(newStep);
                 }
+
             }
             catch (IndexOutOfRangeException)
             {
@@ -170,48 +171,69 @@ namespace MealPlanner
 
             string urlString = "searchComplex?addRecipeInformation=true&excludeIngredients=" + listOfExcludedIngredients + 
                 "&fillIngredients=false&includeIngredients=" + listOfIncludedIngredients + "&instructionsRequired=true&intolerances="
-                + listOfIntolerances + "&limitLicense=false&number=1&offset=<required>&type=main+course";
+                + listOfIntolerances + "&limitLicense=false&number=1&offset=1&type=main+course";
             var response = GetApiRequest(urlString);
             string result = response.Result.Body;
-            DeserializeComplexCall[] rootObject = JsonConvert.DeserializeObject<DeserializeComplexCall[]>(result);
-            foreach (var recipeResult in rootObject)
+            JObject jobject = JObject.Parse(result);
+            if (numberOfRecipes == 1)
             {
-                Recipe recipe = new Recipe
+                DeserializeComplexCall rootObject = JsonConvert.DeserializeObject<DeserializeComplexCall>(result);
+                Recipe newRecipe = new Recipe
                 {
-                  
+                    apiId = rootObject.results[0].id,
+                    title = rootObject.results[0].title,
+                    image = rootObject.results[0].image,
+                    Saved = false
                 };
+                _context.Recipe.Add(newRecipe);
+
+                var stepInfo = jobject.SelectToken("results")[0].SelectToken("analyzedInstructions");
+                GetAnalyzedInstructions[] rootSteps = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(stepInfo.ToString());
+                var root = rootSteps[0];
+                    try
+                    {
+                        foreach (var step in root.steps)
+                        {
+                            StepsForRecipe newStep = new StepsForRecipe
+                            {
+                                RecipeId = newRecipe.Id,
+                                StepNumber = step.number,
+                                StepDescription = step.step
+                            };
+                            _context.StepsForRecipe.Add(newStep);
+                        }
+                    //if (root.steps[0].ingredients.Count != 0 && root.steps[0].ingredients != null)
+                    //{
+                    //    foreach (var ingredient in root.steps)
+                    //    {
+                    //        IngredientsForRecipes ingredientsFor = new IngredientsForRecipes
+                    //        {
+                    //            RecipeId = recipe.Id,
+                    //            IngredientName = ingredient.SelectToken("name").ToString(),
+                    //            Amount = (double)ingredient.SelectToken("amount"),
+                    //            Unit = ingredient.SelectToken("unit").ToString()
+                    //        };
+                    //    }
+                    //}
+                }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Recipe ignoringRecipe = _context.Recipe.Find(newRecipe.Id);
+                        _context.Recipe.Remove(ignoringRecipe);
+                    }
+
             }
+            else
+            {
+                DeserializeComplexCall[] rootObject = JsonConvert.DeserializeObject<DeserializeComplexCall[]>(result);
+                foreach (var recipeResult in rootObject)
+                {
+                    Recipe recipe = new Recipe
+                    {
 
+                    };
+                }
+            }
         }
-
-        //public void GetAnalyzedReceipeInstructions(Recipe recipe)
-        //{
-        //    //string urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe.apiId + "/analyzedInstructions?stepBreakdown=true";
-        //    string urlString = recipe.apiId.ToString() + "/analyzedInstructions?stepBreakdown=true";
-        //    var response = GetApiRequest(urlString);
-        //    string result = response.Result.Body;
-
-        //    GetAnalyzedInstructions[] rootObject = JsonConvert.DeserializeObject<GetAnalyzedInstructions[]>(result);
-        //    var root = rootObject[0];
-
-        //    GetAnalyzedInstructions instructions = new GetAnalyzedInstructions
-        //    {
-        //        name = recipe.title,
-        //        steps = root.steps
-
-        //    };
-
-        //    recipe.RecipeSteps = instructions.steps;
-        //    List<string> gettingIngredients = new List<string>();
-        //    foreach (var step in root.steps)
-        //    {
-        //        if ((step.ingredients != null) && (step.ingredients.Count != 0))
-        //        {
-        //            gettingIngredients.Add(step.ingredients.ToString());
-        //        }
-        //    }
-        //    recipe.Ingredients = gettingIngredients;
-        //    _context.SaveChanges();
-        //}
     }
 }

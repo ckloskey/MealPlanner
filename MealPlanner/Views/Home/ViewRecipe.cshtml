@@ -25,23 +25,57 @@
             </h4>
             @foreach (var item in Model.Ingredients)
             {
-                <dl class="dl-vertical">
-                    <dd>
-                        @if (item.Unit == null)
-                        {
-                            @Html.DisplayFor(modelItem => item.Amount)
-                        }
-                        else
-                        {
-                            @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.Unit)
+                var displayAmount = "";
+                var x = item.Amount - Math.Truncate(item.Amount);
+                var y = (item.Amount - x).ToString();
+                if (item.Amount < 1)
+                {
+                    y = "";
+                }
+                if (x == .5)
+                {
+                    displayAmount = y + " " + "1/2";
+                }
+                else if ((x < .3) && (x > .15))
+                {
+                    displayAmount = y + " " + "1/4";
+                }
+                else if ((x > .5) && (item.Amount < .74))
+                {
+                    displayAmount = y + " " + "2/3";
+                }
+                else if ((x > .25) && (item.Amount < .5))
+                {
+                    displayAmount = y + " " + "1/3";
+                }
+                else if (x >= .74)
+                {
+                    displayAmount = y + " " + "3/4";
+                }
+                else if ((x < .25) && x > 0)
+                {
+                    displayAmount = y + " " + "1/8";
+                }else if(x == 0)
+                {
+                    displayAmount = y;
+                }
 
-                        }
+        <dl class="dl-vertical">
+            <dd>
+                @if (item.Unit == null)
+    {
+            @displayAmount @*@Html.DisplayFor(modelItem => item.Amount)*@
+}
+else
+{
+            @displayAmount @:&nbsp;@Html.DisplayFor(modelItem => item.Unit)
+}
 
-                        @Html.DisplayFor(model => item.IngredientName)
+                @Html.DisplayFor(model => item.IngredientName)
 
-                    </dd>
-                </dl>
-            }
+            </dd>
+        </dl>
+}
         </div>
 
 

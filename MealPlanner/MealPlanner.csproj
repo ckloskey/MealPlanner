@@ -287,6 +287,14 @@
     <Compile Include="Migrations\201807011520007_AddingFieldToRestrictions.Designer.cs">
       <DependentUpon>201807011520007_AddingFieldToRestrictions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807021922411_changinAmountfromDoubletoString.cs" />
+    <Compile Include="Migrations\201807021922411_changinAmountfromDoubletoString.Designer.cs">
+      <DependentUpon>201807021922411_changinAmountfromDoubletoString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807021930480_changinbacktodouble.cs" />
+    <Compile Include="Migrations\201807021930480_changinbacktodouble.Designer.cs">
+      <DependentUpon>201807021930480_changinbacktodouble.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DeseriaizeComplexCallProductMatch.cs" />
@@ -467,6 +475,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807011520007_AddingFieldToRestrictions.resx">
       <DependentUpon>201807011520007_AddingFieldToRestrictions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807021922411_changinAmountfromDoubletoString.resx">
+      <DependentUpon>201807021922411_changinAmountfromDoubletoString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807021930480_changinbacktodouble.resx">
+      <DependentUpon>201807021930480_changinbacktodouble.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -78,11 +78,15 @@ namespace MealPlanner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Restriction")] DietaryRestriction dietaryRestriction)
+        public ActionResult Edit([Bind(Include = "Id,Restriction,IsAllergic")] DietaryRestriction dietaryRestriction)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dietaryRestriction).State = EntityState.Modified;
+                DietaryRestriction dietaryRestriction1 = db.DietaryRestriction.Find(dietaryRestriction.Id);
+                dietaryRestriction1.IsAllergic = dietaryRestriction.IsAllergic;
+                dietaryRestriction.Restriction = dietaryRestriction1.Restriction;
+                db.Entry(dietaryRestriction1).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
