@@ -40,7 +40,7 @@ namespace MealPlanner
             var fridgeItems = _context.FoodItem.ToList();
             var ingredientsList = string.Join(",", fridgeItems.Select(o => o.Name));
             
-            string urlString = "findByIngredients?ingredients=" + ingredientsList + "&number=4&ranking=1";
+            string urlString = "findByIngredients?ingredients=" + ingredientsList + "&number=5&ranking=1";
             //ingredients to be included
             //ranking == "1" <-- maximizes ingredients
             var response = GetApiRequest(urlString);
